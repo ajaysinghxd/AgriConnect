@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    AgriConnect | Buyer
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  />
+
+</head>
+
+<body onload="initBuyerPage()">
+
+  <!-- ========================= -->
+  <!-- NAVBAR -->
+  <!-- ========================= -->
+
+  <nav class="navbar">
+
+    <a
+      href="index.html"
+      class="logo"
+    >
+      🌿 AgriConnect
+    </a>
+
+    <button
+      class="menu-btn"
+      onclick="toggleMenu()"
+    >
+      ☰
+    </button>
+
+    <div
+      class="nav-links"
+      id="navLinks"
+    >
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="farmer.html">
+        Farmer
+      </a>
+
+      <a href="equipment.html">
+        Equipment
+      </a>
+
+      <button
+        class="logout-btn"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </nav>
+
+  <!-- ========================= -->
+  <!-- HERO SECTION -->
+  <!-- ========================= -->
+
+  <header class="dashboard-hero buyer-hero">
+
+    <div>
+
+      <span class="badge">
+        Buyer Dashboard
+      </span>
+
+      <h1>
+        Welcome Buyer 🛒
+      </h1>
+
+      <p id="userDetails">
+        Buy fresh produce directly from farmers
+      </p>
+
+    </div>
+
+    <div class="cart-pill">
+
+      Cart:
+      <span id="cartCount">
+        0
+      </span>
+
+    </div>
+
+  </header>
+
+  <!-- ========================= -->
+  <!-- MAIN CONTENT -->
+  <!-- ========================= -->
+
+  <main class="dashboard-container">
+
+    <!-- ========================= -->
+    <!-- SEARCH + FILTER -->
+    <!-- ========================= -->
+
+    <section class="market-controls">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search crops..."
+        oninput="renderBuyerProducts()"
+      />
+
+      <div class="filter-buttons">
+
+        <button onclick="setCategory('All')">
+          All
+        </button>
+
+        <button onclick="setCategory('Vegetables')">
+          Vegetables
+        </button>
+
+        <button onclick="setCategory('Fruits')">
+          Fruits
+        </button>
+
+        <button onclick="setCategory('Grains')">
+          Grains
+        </button>
+
+        <button onclick="setCategory('Spices')">
+          Spices
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- MARKETPLACE + CART -->
+    <!-- ========================= -->
+
+    <section class="shop-layout">
+
+      <!-- MARKETPLACE -->
+
+      <div class="marketplace-section">
+
+        <h2>
+          Marketplace
+        </h2>
+
+        <div
+          class="grid cards-grid"
+          id="buyerProducts"
+        >
+        </div>
+
+      </div>
+
+      <!-- CART -->
+
+      <aside class="cart-box">
+
+        <h2>
+          Cart Summary
+        </h2>
+
+        <div id="cartItems">
+        </div>
+
+        <h3>
+
+          Total:
+          ₹<span id="cartTotal">
+            0
+          </span>
+
+        </h3>
+
+        <button
+          class="full-btn"
+          onclick="checkout()"
+        >
+          Checkout
+        </button>
+
+      </aside>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- ORDERS SECTION -->
+    <!-- ========================= -->
+
+    <section class="orders-section">
+
+      <h2>
+        Your Orders
+      </h2>
+
+      <div
+        class="grid cards-grid"
+        id="ordersContainer"
+      >
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================= -->
+  <!-- SCRIPT -->
+  <!-- ========================= -->
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>

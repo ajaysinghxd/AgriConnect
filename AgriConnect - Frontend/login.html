@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    AgriConnect | Login
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  />
+
+</head>
+
+<body>
+
+  <!-- ========================= -->
+  <!-- NAVBAR -->
+  <!-- ========================= -->
+
+  <nav class="navbar">
+
+    <a
+      href="index.html"
+      class="logo"
+    >
+      🌿 AgriConnect
+    </a>
+
+    <button
+      class="menu-btn"
+      onclick="toggleMenu()"
+    >
+      ☰
+    </button>
+
+    <div
+      class="nav-links"
+      id="navLinks"
+    >
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="buyer.html">
+        Buyer
+      </a>
+
+      <a href="farmer.html">
+        Farmer
+      </a>
+
+      <a href="equipment.html">
+        Equipment
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- ========================= -->
+  <!-- LOGIN SECTION -->
+  <!-- ========================= -->
+
+  <main class="login-page">
+
+    <div class="login-card">
+
+      <span class="badge">
+        AgriConnect Login
+      </span>
+
+      <h1>
+        Welcome Back 👋
+      </h1>
+
+      <p>
+        Login to continue using AgriConnect
+      </p>
+
+      <!-- ========================= -->
+      <!-- LOGIN FORM -->
+      <!-- ========================= -->
+
+      <form
+        class="login-form"
+        onsubmit="event.preventDefault(); loginUser();"
+      >
+
+        <!-- ROLE -->
+
+        <select
+          id="role"
+          required
+        >
+
+          <option value="">
+            Select Role
+          </option>
+
+          <option value="buyer">
+            Buyer
+          </option>
+
+          <option value="farmer">
+            Farmer
+          </option>
+
+          <option value="equipment">
+            Equipment Owner
+          </option>
+
+        </select>
+
+        <!-- LOGIN METHOD -->
+
+        <select
+          id="loginMethod"
+          onchange="changeLoginPlaceholder()"
+          required
+        >
+
+          <option value="mobile">
+            Mobile Number
+          </option>
+
+          <option value="email">
+            Email Address
+          </option>
+
+        </select>
+
+        <!-- NAME -->
+
+        <input
+          type="text"
+          id="userName"
+          placeholder="Enter Full Name"
+          required
+        />
+
+        <!-- EMAIL / MOBILE -->
+
+        <input
+          type="text"
+          id="loginInput"
+          placeholder="Enter your mobile number"
+          required
+        />
+
+        <!-- PASSWORD -->
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          required
+        />
+
+        <!-- OTP SECTION -->
+
+        <div class="otp-section">
+
+          <input
+            type="text"
+            id="otpInput"
+            placeholder="Enter OTP"
+            required
+          />
+
+          <button
+            type="button"
+            class="otp-btn"
+            onclick="sendOTP()"
+          >
+            Send OTP
+          </button>
+
+        </div>
+
+        <!-- LOGIN BUTTON -->
+
+        <button
+          type="submit"
+          class="full-btn"
+        >
+          Login
+        </button>
+
+      </form>
+
+    </div>
+
+  </main>
+
+  <!-- ========================= -->
+  <!-- SCRIPT -->
+  <!-- ========================= -->
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>

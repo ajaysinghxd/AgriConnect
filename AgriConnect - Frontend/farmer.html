@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    AgriConnect | Farmer
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  />
+
+</head>
+
+<body onload="initFarmerPage()">
+
+  <!-- ========================= -->
+  <!-- NAVBAR -->
+  <!-- ========================= -->
+
+  <nav class="navbar">
+
+    <a
+      href="index.html"
+      class="logo"
+    >
+      🌿 AgriConnect
+    </a>
+
+    <button
+      class="menu-btn"
+      onclick="toggleMenu()"
+    >
+      ☰
+    </button>
+
+    <div
+      class="nav-links"
+      id="navLinks"
+    >
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="buyer.html">
+        Buyer
+      </a>
+
+      <a href="equipment.html">
+        Equipment
+      </a>
+
+      <button
+        class="logout-btn"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </nav>
+
+  <!-- ========================= -->
+  <!-- HERO SECTION -->
+  <!-- ========================= -->
+
+  <header class="dashboard-hero farmer-hero">
+
+    <div>
+
+      <span class="badge">
+        Farmer Dashboard
+      </span>
+
+      <h1>
+        Welcome Farmer 🌾
+      </h1>
+
+      <p id="userDetails">
+        Manage and sell your crops directly
+      </p>
+
+    </div>
+
+    <div class="cart-pill">
+
+      Total Products:
+      <span id="totalProducts">
+        0
+      </span>
+
+    </div>
+
+  </header>
+
+  <!-- ========================= -->
+  <!-- MAIN CONTENT -->
+  <!-- ========================= -->
+
+  <main class="dashboard-container">
+
+    <!-- ========================= -->
+    <!-- ADD CROP FORM -->
+    <!-- ========================= -->
+
+    <section class="form-section">
+
+      <h2>
+        Add New Crop
+      </h2>
+
+      <form
+        id="cropForm"
+        class="dashboard-form"
+        onsubmit="saveCrop(event)"
+      >
+
+        <input
+          type="text"
+          id="cropName"
+          placeholder="Crop Name"
+          required
+        />
+
+        <select
+          id="cropCategory"
+          required
+        >
+
+          <option value="">
+            Select Category
+          </option>
+
+          <option value="Vegetables">
+            Vegetables
+          </option>
+
+          <option value="Fruits">
+            Fruits
+          </option>
+
+          <option value="Grains">
+            Grains
+          </option>
+
+          <option value="Spices">
+            Spices
+          </option>
+
+        </select>
+
+        <input
+          type="number"
+          id="cropPrice"
+          placeholder="Price Per Kg"
+          required
+        />
+
+        <input
+          type="number"
+          id="cropQuantity"
+          placeholder="Quantity (Kg)"
+          required
+        />
+
+        <input
+          type="text"
+          id="cropLocation"
+          placeholder="Location"
+          required
+        />
+
+        <input
+          type="text"
+          id="cropImage"
+          placeholder="Crop Image URL"
+        />
+
+        <button type="submit">
+
+          Add Crop
+
+        </button>
+
+      </form>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- PRICE PREDICTION -->
+    <!-- ========================= -->
+
+    <section class="prediction-section">
+
+      <h2>
+        Crop Price Prediction
+      </h2>
+
+      <div class="prediction-box">
+
+        <select id="priceCrop">
+
+          <option value="">
+            Select Crop
+          </option>
+
+          <option value="Tomato">
+            Tomato
+          </option>
+
+          <option value="Potato">
+            Potato
+          </option>
+
+          <option value="Onion">
+            Onion
+          </option>
+
+          <option value="Rice">
+            Rice
+          </option>
+
+          <option value="Wheat">
+            Wheat
+          </option>
+
+        </select>
+
+        <button onclick="predictPrice()">
+
+          Predict Price
+
+        </button>
+
+      </div>
+
+      <div
+        id="predictionBox"
+        class="prediction-result"
+      >
+      </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- FARMER PRODUCTS -->
+    <!-- ========================= -->
+
+    <section>
+
+      <h2>
+        Your Crops
+      </h2>
+
+      <div
+        class="grid cards-grid"
+        id="farmerProducts"
+      >
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================= -->
+  <!-- SCRIPT -->
+  <!-- ========================= -->
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
