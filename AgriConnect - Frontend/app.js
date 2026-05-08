@@ -1,4 +1,5 @@
 let generatedOTP = "";
+
 let selectedCategory = "All";
 
 const defaultImage =
@@ -29,7 +30,9 @@ async function fetchProducts() {
 
     renderFarmerProducts();
 
-  } catch (error) {
+  }
+
+  catch (error) {
 
     console.log(
       "Error fetching products:",
@@ -46,30 +49,45 @@ const sampleEquipment = [
 
   {
     id: 201,
+
     name: "Tractor",
+
     rent: 1500,
+
     location: "Ghazipur",
+
     availability: "Available",
+
     image:
       "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=700"
   },
 
   {
     id: 202,
+
     name: "Harvester",
+
     rent: 3000,
+
     location: "Varanasi",
+
     availability: "Available",
+
     image:
       "https://images.unsplash.com/photo-1627920769842-6887c6df05ca?w=700"
   },
 
   {
     id: 203,
+
     name: "Water Pump",
+
     rent: 500,
+
     location: "Lucknow",
+
     availability: "Not Available",
+
     image:
       "https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?w=700"
   }
@@ -85,6 +103,7 @@ function toggleMenu() {
     document.getElementById("navLinks");
 
   if (navLinks) {
+
     navLinks.classList.toggle("active");
   }
 }
@@ -128,8 +147,9 @@ function showUserDetails() {
 
     userDetails.innerText =
       `${user.name} | ${user.method}: ${user.contact} | Role: ${user.role}`;
+  }
 
-  } else {
+  else {
 
     userDetails.innerText =
       "Demo User";
@@ -156,8 +176,9 @@ function changeLoginPlaceholder() {
 
     loginInput.placeholder =
       "Enter mobile number";
+  }
 
-  } else {
+  else {
 
     loginInput.placeholder =
       "Enter email";
@@ -242,6 +263,7 @@ function loginUser() {
   }
 
   const user = {
+
     role,
     method,
     name,
@@ -257,13 +279,15 @@ function loginUser() {
 
     window.location.href =
       "farmer.html";
+  }
 
-  } else if (role === "buyer") {
+  else if (role === "buyer") {
 
     window.location.href =
       "buyer.html";
+  }
 
-  } else {
+  else {
 
     window.location.href =
       "equipment.html";
@@ -379,8 +403,9 @@ async function saveCrop(event) {
     ).reset();
 
     await fetchProducts();
+  }
 
-  } catch (error) {
+  catch (error) {
 
     console.log(error);
 
@@ -464,48 +489,6 @@ function renderFarmerProducts() {
     `).join("");
 }
 
-function predictPrice() {
-
-  const crop =
-    document.getElementById(
-      "priceCrop"
-    ).value;
-
-  const box =
-    document.getElementById(
-      "predictionBox"
-    );
-
-  const prices = {
-
-    Tomato:
-      "₹25 - ₹40 per kg",
-
-    Potato:
-      "₹20 - ₹32 per kg",
-
-    Onion:
-      "₹30 - ₹55 per kg",
-
-    Wheat:
-      "₹24 - ₹32 per kg",
-
-    Rice:
-      "₹35 - ₹55 per kg"
-  };
-
-  if (!crop) {
-
-    box.innerText =
-      "Please select a crop.";
-
-    return;
-  }
-
-  box.innerText =
-    `${crop} suggested price range: ${prices[crop]}`;
-}
-
 // ========================================
 // BUYER PAGE
 // ========================================
@@ -575,7 +558,9 @@ function renderBuyerProducts() {
         product =>
           product.name
             .toLowerCase()
-            .includes(searchText) ||
+            .includes(searchText)
+
+          ||
 
           product.location
             .toLowerCase()
@@ -621,10 +606,9 @@ function renderBuyerProducts() {
         </p>
 
         <button
-          onclick="addToCart('${product._id}')">
-
+          onclick="addToCart('${product._id}')"
+        >
           Add to Cart
-
         </button>
 
       </div>
@@ -709,8 +693,9 @@ async function addToCart(id) {
         )
       }
     );
+  }
 
-  } catch (error) {
+  catch (error) {
 
     console.log(error);
   }
@@ -819,10 +804,9 @@ function renderCart() {
         </p>
 
         <button
-          onclick="removeFromCart(${index})">
-
+          onclick="removeFromCart(${index})"
+        >
           Remove
-
         </button>
 
       </div>
@@ -904,8 +888,9 @@ async function renderOrders() {
       </div>
 
     `).join("");
+  }
 
-  } catch (error) {
+  catch (error) {
 
     console.log(
       "Order Fetch Error:",
