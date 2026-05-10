@@ -74,7 +74,7 @@
                 Wishlist
             </a>
 
-            <a href="#">
+            <a href="marketplace.html">
                 Marketplace
             </a>
 
@@ -104,19 +104,22 @@
                     BUYER PANEL
                 </span>
 
-                <h1>
-                    Welcome Back, Buyer
+                <h1 id="welcome-user">
+                    Welcome Back
                 </h1>
 
             </div>
 
-            <button class="dashboard-btn">
+            <a
+                href="marketplace.html"
+                class="dashboard-btn"
+            >
                 Browse Marketplace
-            </button>
+            </a>
 
         </div>
 
-        <!-- STATS -->
+        <!-- LIVE STATS -->
 
         <div class="stats-grid">
 
@@ -126,8 +129,8 @@
                     Total Orders
                 </span>
 
-                <h2>
-                    82
+                <h2 id="total-orders">
+                    0
                 </h2>
 
             </div>
@@ -135,11 +138,11 @@
             <div class="stat-card">
 
                 <span>
-                    Wishlist
+                    Total Spending
                 </span>
 
-                <h2>
-                    34
+                <h2 id="total-spending">
+                    ₹0
                 </h2>
 
             </div>
@@ -147,23 +150,23 @@
             <div class="stat-card">
 
                 <span>
-                    Saved Sellers
+                    Active Orders
+                </span>
+
+                <h2 id="active-orders">
+                    0
+                </h2>
+
+            </div>
+
+            <div class="stat-card">
+
+                <span>
+                    Saved Products
                 </span>
 
                 <h2>
                     12
-                </h2>
-
-            </div>
-
-            <div class="stat-card">
-
-                <span>
-                    Recommendations
-                </span>
-
-                <h2>
-                    18
                 </h2>
 
             </div>
@@ -183,6 +186,8 @@
             </div>
 
             <div class="dashboard-table">
+
+                <!-- TABLE HEAD -->
 
                 <div class="table-row table-head">
 
@@ -204,63 +209,11 @@
 
                 </div>
 
-                <div class="table-row">
+                <!-- LIVE ORDERS -->
 
-                    <span>
-                        Premium Wheat
-                    </span>
+                <div id="orders-container">
 
-                    <span>
-                        Green Farms
-                    </span>
-
-                    <span>
-                        Delivered
-                    </span>
-
-                    <span>
-                        ₹2,450
-                    </span>
-
-                </div>
-
-                <div class="table-row">
-
-                    <span>
-                        AI Tractor
-                    </span>
-
-                    <span>
-                        AgroTech
-                    </span>
-
-                    <span>
-                        Shipping
-                    </span>
-
-                    <span>
-                        ₹8.4L
-                    </span>
-
-                </div>
-
-                <div class="table-row">
-
-                    <span>
-                        Bio Nutrient Mix
-                    </span>
-
-                    <span>
-                        Organic India
-                    </span>
-
-                    <span>
-                        Delivered
-                    </span>
-
-                    <span>
-                        ₹1,250
-                    </span>
+                    <!-- ORDERS LOAD DYNAMICALLY -->
 
                 </div>
 
@@ -268,7 +221,157 @@
 
         </section>
 
-    </main>
+        <!-- MARKET INSIGHTS -->
+
+        <section class="dashboard-section market-insights">
+
+            <div class="section-title">
+
+                <h3>
+                    Market Insights
+                </h3>
+
+            </div>
+
+            <div class="insights-grid">
+
+                <div class="insight-card">
+
+                    <h4>
+                        Highest Demand
+                    </h4>
+
+                    <p id="top-product">
+                        Loading...
+                    </p>
+
+                </div>
+
+                <div class="insight-card">
+
+                    <h4>
+                        Total Marketplace Orders
+                    </h4>
+
+                    <p id="market-orders">
+                        0
+                    </p>
+
+                </div>
+
+                <div class="insight-card">
+
+                    <h4>
+                        Preferred Category
+                    </h4>
+
+                    <p id="top-category">
+                        Crops
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- LIVE ANALYTICS -->
+         <!-- LIVE ANALYTICS -->
+
+<section class="dashboard-section analytics-section">
+
+    <div class="section-title">
+
+        <h3>
+            Purchase Analytics
+        </h3>
+
+    </div>
+
+    <div class="chart-card">
+
+        <canvas id="ordersChart"></canvas>
+
+    </div>
+
+</section>
+
+
+
+
+        <!-- WEATHER SECTION -->
+
+<section class="dashboard-section weather-section">
+
+    <div class="section-title">
+
+        <h3>
+            Live Weather Insights
+        </h3>
+
+    </div>
+
+    <div class="weather-card">
+
+        <div class="weather-left">
+
+            <h2 id="weather-temp">
+                --
+            </h2>
+
+            <p id="weather-condition">
+                Loading weather...
+            </p>
+
+        </div>
+
+        <div class="weather-right">
+
+            <div class="weather-info">
+
+                <span>
+                    Humidity
+                </span>
+
+                <strong id="weather-humidity">
+                    --
+                </strong>
+
+            </div>
+
+            <div class="weather-info">
+
+                <span>
+                    Wind
+                </span>
+
+                <strong id="weather-wind">
+                    --
+                </strong>
+
+            </div>
+
+            <div class="weather-info">
+
+                <span>
+                    City
+                </span>
+
+                <strong id="weather-city">
+                    Bangalore
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- CHART JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- JS -->
 

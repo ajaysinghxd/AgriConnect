@@ -87,7 +87,9 @@
                     Login
                 </h2>
 
-                <form>
+                <!-- FORM -->
+
+                <form class="login-form">
 
                     <!-- EMAIL -->
 
@@ -99,7 +101,9 @@
 
                         <input
                             type="email"
+                            id="login-email"
                             placeholder="Enter your email"
+                            required
                         />
 
                     </div>
@@ -114,7 +118,9 @@
 
                         <input
                             type="password"
+                            id="login-password"
                             placeholder="Enter password"
+                            required
                         />
 
                     </div>
@@ -139,12 +145,14 @@
 
                     <!-- BUTTON -->
 
-<a
-    href="buyer-dashboard.html"
-    class="auth-btn"
->
-    Login
-</a>
+                    <button
+                        type="submit"
+                        class="auth-btn"
+                    >
+                        Login
+                    </button>
+
+                </form>
 
                 <!-- FOOTER -->
 

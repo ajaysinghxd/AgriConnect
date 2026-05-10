@@ -87,7 +87,9 @@
                     Sign Up
                 </h2>
 
-                <form>
+                <!-- FORM -->
+
+                <form class="signup-form">
 
                     <!-- NAME -->
 
@@ -99,7 +101,9 @@
 
                         <input
                             type="text"
+                            id="signup-name"
                             placeholder="Enter full name"
+                            required
                         />
 
                     </div>
@@ -114,7 +118,9 @@
 
                         <input
                             type="email"
+                            id="signup-email"
                             placeholder="Enter email"
+                            required
                         />
 
                     </div>
@@ -129,7 +135,9 @@
 
                         <input
                             type="password"
+                            id="signup-password"
                             placeholder="Create password"
+                            required
                         />
 
                     </div>
@@ -142,18 +150,17 @@
                             Select Role
                         </label>
 
-                        <select>
+                        <select
+                            id="signup-role"
+                            required
+                        >
 
-                            <option>
+                            <option value="farmer">
                                 Farmer
                             </option>
 
-                            <option>
+                            <option value="buyer">
                                 Buyer
-                            </option>
-
-                            <option>
-                                Seller
                             </option>
 
                         </select>

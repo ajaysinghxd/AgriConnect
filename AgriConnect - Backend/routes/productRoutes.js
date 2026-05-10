@@ -2,116 +2,156 @@ const express = require("express");
 
 const router = express.Router();
 
-const Product = require("../models/product");
+const Product =
+    require("../models/product");
 
-// ==============================
-// GET ALL PRODUCTS
-// ==============================
+const {
+    protect
+} = require(
+    "../middleware/authMiddleware"
+);
 
-router.get("/", async (req, res) => {
 
-  try {
+/* ==============================
+   GET ALL PRODUCTS
+============================== */
 
-    const products =
-      await Product.find();
+router.get(
+    "/",
+    async (req, res) => {
 
-    res.json(products);
+        try {
 
-  }
+            const products =
+                await Product.find();
 
-  catch (error) {
+            res.json(products);
 
-    res.status(500).json({
-      error: error.message
-    });
-  }
-});
-
-// ==============================
-// ADD PRODUCT
-// ==============================
-
-router.post("/", async (req, res) => {
-
-  try {
-
-    const product =
-      new Product(req.body);
-
-    const savedProduct =
-      await product.save();
-
-    res.status(201).json(
-      savedProduct
-    );
-
-  }
-
-  catch (error) {
-
-    res.status(400).json({
-      error: error.message
-    });
-  }
-});
-
-// ==============================
-// UPDATE PRODUCT
-// ==============================
-
-router.put("/:id", async (req, res) => {
-
-  try {
-
-    const updatedProduct =
-      await Product.findByIdAndUpdate(
-
-        req.params.id,
-
-        req.body,
-
-        {
-          new: true
         }
-      );
 
-    res.json(updatedProduct);
+        catch (error) {
 
-  }
+            res.status(500).json({
+                error:
+                    error.message
+            });
 
-  catch (error) {
+        }
 
-    res.status(500).json({
-      error: error.message
-    });
-  }
-});
+    }
+);
 
-// ==============================
-// DELETE PRODUCT
-// ==============================
 
-router.delete("/:id", async (req, res) => {
+/* ==============================
+   ADD PRODUCT
+============================== */
 
-  try {
+router.post(
+    "/",
+    protect,
+    async (req, res) => {
 
-    await Product.findByIdAndDelete(
-      req.params.id
-    );
+        try {
 
-    res.json({
-      message:
-        "Product deleted successfully"
-    });
+            const product =
+                new Product(req.body);
 
-  }
+            const savedProduct =
+                await product.save();
 
-  catch (error) {
+            res.status(201).json(
+                savedProduct
+            );
 
-    res.status(500).json({
-      error: error.message
-    });
-  }
-});
+        }
+
+        catch (error) {
+
+            res.status(400).json({
+                error:
+                    error.message
+            });
+
+        }
+
+    }
+);
+
+
+/* ==============================
+   UPDATE PRODUCT
+============================== */
+
+router.put(
+    "/:id",
+    protect,
+    async (req, res) => {
+
+        try {
+
+            const updatedProduct =
+                await Product.findByIdAndUpdate(
+
+                    req.params.id,
+
+                    req.body,
+
+                    {
+                        new: true
+                    }
+                );
+
+            res.json(
+                updatedProduct
+            );
+
+        }
+
+        catch (error) {
+
+            res.status(500).json({
+                error:
+                    error.message
+            });
+
+        }
+
+    }
+);
+
+
+/* ==============================
+   DELETE PRODUCT
+============================== */
+
+router.delete(
+    "/:id",
+    protect,
+    async (req, res) => {
+
+        try {
+
+            await Product.findByIdAndDelete(
+                req.params.id
+            );
+
+            res.json({
+                message:
+                    "Product deleted successfully"
+            });
+
+        }
+
+        catch (error) {
+
+            res.status(500).json({
+                error:
+                    error.message
+            });
+
+        }
+
+    }
+);
 
 module.exports = router;

@@ -104,19 +104,22 @@
                     FARMER PANEL
                 </span>
 
-                <h1>
-                    Welcome Back, Farmer
+                <h1 id="welcome-user">
+                    Welcome Back
                 </h1>
 
             </div>
 
-            <button class="dashboard-btn">
+            <button
+                class="dashboard-btn"
+                id="open-upload-modal"
+            >
                 + Upload Product
             </button>
 
         </div>
 
-        <!-- STATS -->
+        <!-- LIVE STATS -->
 
         <div class="stats-grid">
 
@@ -126,8 +129,8 @@
                     Total Products
                 </span>
 
-                <h2>
-                    128
+                <h2 id="farmer-products">
+                    0
                 </h2>
 
             </div>
@@ -135,11 +138,11 @@
             <div class="stat-card">
 
                 <span>
-                    Orders
+                    Total Orders
                 </span>
 
-                <h2>
-                    432
+                <h2 id="farmer-orders">
+                    0
                 </h2>
 
             </div>
@@ -150,8 +153,8 @@
                     Revenue
                 </span>
 
-                <h2>
-                    ₹4.2L
+                <h2 id="farmer-revenue">
+                    ₹0
                 </h2>
 
             </div>
@@ -162,27 +165,29 @@
                     Customers
                 </span>
 
-                <h2>
-                    1,280
+                <h2 id="farmer-customers">
+                    0
                 </h2>
 
             </div>
 
         </div>
 
-        <!-- PRODUCTS -->
+        <!-- INVENTORY -->
 
         <section class="dashboard-section">
 
             <div class="section-title">
 
                 <h3>
-                    Recent Products
+                    Inventory Management
                 </h3>
 
             </div>
 
             <div class="dashboard-table">
+
+                <!-- TABLE HEAD -->
 
                 <div class="table-row table-head">
 
@@ -202,65 +207,102 @@
                         Price
                     </span>
 
-                </div>
-
-                <div class="table-row">
-
                     <span>
-                        Premium Wheat
-                    </span>
-
-                    <span>
-                        Crops
-                    </span>
-
-                    <span>
-                        240 kg
-                    </span>
-
-                    <span>
-                        ₹2,450
+                        Actions
                     </span>
 
                 </div>
 
-                <div class="table-row">
+                <!-- LIVE PRODUCTS -->
 
-                    <span>
-                        Organic Rice
-                    </span>
-
-                    <span>
-                        Crops
-                    </span>
-
-                    <span>
-                        180 kg
-                    </span>
-
-                    <span>
-                        ₹3,100
-                    </span>
+                <div id="farmer-products-container">
 
                 </div>
 
-                <div class="table-row">
+            </div>
 
-                    <span>
-                        Bio Nutrient Mix
-                    </span>
+        </section>
 
-                    <span>
-                        Fertilizer
-                    </span>
+        <!-- AI CROP RECOMMENDATION -->
 
-                    <span>
-                        96 bags
-                    </span>
+        <section class="dashboard-section ai-section">
 
-                    <span>
-                        ₹1,250
-                    </span>
+            <div class="section-title">
+
+                <h3>
+                    AI Crop Recommendation
+                </h3>
+
+            </div>
+
+            <div class="ai-card">
+
+                <div class="ai-form">
+
+                    <select id="soil-type">
+
+                        <option value="">
+                            Select Soil Type
+                        </option>
+
+                        <option value="black">
+                            Black Soil
+                        </option>
+
+                        <option value="red">
+                            Red Soil
+                        </option>
+
+                        <option value="clay">
+                            Clay Soil
+                        </option>
+
+                        <option value="sandy">
+                            Sandy Soil
+                        </option>
+
+                    </select>
+
+                    <select id="season">
+
+                        <option value="">
+                            Select Season
+                        </option>
+
+                        <option value="summer">
+                            Summer
+                        </option>
+
+                        <option value="winter">
+                            Winter
+                        </option>
+
+                        <option value="monsoon">
+                            Monsoon
+                        </option>
+
+                    </select>
+
+                    <input
+                        type="number"
+                        id="temperature"
+                        placeholder="Temperature °C"
+                    />
+
+                    <button
+                        class="dashboard-btn"
+                        id="predict-btn"
+                    >
+                        Generate Recommendation
+                    </button>
+
+                </div>
+
+                <div class="ai-result">
+
+                    <h2 id="crop-result">
+                        Smart AI Suggestions Will Appear Here
+                    </h2>
 
                 </div>
 
@@ -269,6 +311,78 @@
         </section>
 
     </main>
+
+    <!-- =========================
+         PRODUCT UPLOAD MODAL
+    ========================== -->
+
+    <div
+        class="upload-modal"
+        id="upload-modal"
+    >
+
+        <div class="upload-modal-content">
+
+            <h2>
+                Upload Product
+            </h2>
+
+            <form id="upload-product-form">
+
+                <input
+                    type="text"
+                    id="product-name"
+                    placeholder="Product Name"
+                    required
+                />
+
+                <input
+                    type="number"
+                    id="product-price"
+                    placeholder="Price"
+                    required
+                />
+
+                <input
+                    type="number"
+                    id="product-quantity"
+                    placeholder="Quantity"
+                    required
+                />
+
+                <input
+                    type="text"
+                    id="product-location"
+                    placeholder="Location"
+                    required
+                />
+
+                <input
+                    type="text"
+                    id="product-category"
+                    placeholder="Category"
+                    required
+                />
+
+                <input
+                    type="text"
+                    id="product-image"
+                    placeholder="Image URL"
+                    required
+                />
+
+                <button
+                    type="submit"
+                    class="dashboard-btn"
+                >
+                    Upload Product
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
     <!-- JS -->
 

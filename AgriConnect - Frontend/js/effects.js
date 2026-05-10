@@ -3,35 +3,62 @@
 ========================= */
 
 const cursorGlow =
-    document.querySelector('.cursor-glow');
+    document.querySelector(
+        '.cursor-glow'
+    );
 
-document.addEventListener('mousemove', (e) => {
+if (cursorGlow) {
 
-    cursorGlow.style.left =
-        e.clientX + 'px';
+    document.addEventListener(
+        'mousemove',
+        (e) => {
 
-    cursorGlow.style.top =
-        e.clientY + 'px';
+            cursorGlow.style.left =
+                e.clientX + 'px';
 
-});
+            cursorGlow.style.top =
+                e.clientY + 'px';
+
+        }
+    );
+
+}
+
 
 /* =========================
    NAVBAR SCROLL EFFECT
 ========================= */
 
 const navbar =
-    document.querySelector('.navbar');
+    document.querySelector(
+        '.navbar'
+    );
 
-window.addEventListener('scroll', () => {
+if (navbar) {
 
-    if(window.scrollY > 40){
+    window.addEventListener(
+        'scroll',
+        () => {
 
-        navbar.classList.add('scrolled');
+            if (
+                window.scrollY > 40
+            ) {
 
-    }else{
+                navbar.classList.add(
+                    'scrolled'
+                );
 
-        navbar.classList.remove('scrolled');
+            }
 
-    }
+            else {
 
-});
+                navbar.classList.remove(
+                    'scrolled'
+                );
+
+            }
+
+        }
+    );
+
+}
