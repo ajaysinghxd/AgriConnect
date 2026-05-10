@@ -9,12 +9,6 @@ const {
     "../controllers/orderController"
 );
 
-const {
-    protect
-} = require(
-    "../middleware/authMiddleware"
-);
-
 
 /* =========================
    GET ORDERS
@@ -22,7 +16,6 @@ const {
 
 router.get(
     "/",
-    protect,
     getOrders
 );
 
@@ -33,7 +26,6 @@ router.get(
 
 router.post(
     "/",
-    protect,
     createOrder
 );
 
