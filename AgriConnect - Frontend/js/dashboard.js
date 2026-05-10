@@ -304,7 +304,7 @@ async function loadOrders() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/orders",
+                "https://agriconnect-gor1.onrender.com/api/orders",
                 {
                     headers: {
                         "Authorization":
@@ -375,7 +375,7 @@ async function loadBuyerAnalytics() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/orders",
+                "https://agriconnect-gor1.onrender.com/api/orders",
                 {
                     headers: {
                         "Authorization":
@@ -496,7 +496,7 @@ async function loadFarmerProducts() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/products"
+                "https://agriconnect-gor1.onrender.com/api/products"
             );
 
         const allProducts =
@@ -621,7 +621,7 @@ async function deleteProduct(id) {
 
         const response =
             await fetch(
-                `http://localhost:5000/api/products/${id}`,
+                `https://agriconnect-gor1.onrender.com/api/products/${id}`,
                 {
                     method: "DELETE",
 
@@ -680,7 +680,7 @@ async function loadFarmerOrders() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/orders",
+                "https://agriconnect-gor1.onrender.com/api/orders",
                 {
                     headers: {
                         "Authorization":
@@ -892,7 +892,7 @@ if (uploadForm) {
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/products",
+                        "https://agriconnect-gor1.onrender.com/api/products",
                         {
                             method: "POST",
 
@@ -972,7 +972,7 @@ async function loadOrdersChart() {
 
         const response =
             await fetch(
-                "http://localhost:5000/api/orders",
+                "https://agriconnect-gor1.onrender.com/api/orders",
                 {
                     headers: {
                         "Authorization":
