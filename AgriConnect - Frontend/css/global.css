@@ -1,0 +1,270 @@
+html,
+body{
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+    font-family: 'Inter', sans-serif;
+
+    background:
+        #050816;
+
+    color:
+        var(--text-primary);
+
+    min-height: 100vh;
+
+    position: relative;
+
+    isolation: isolate;
+
+    overflow-x: hidden;
+}
+
+/* =========================
+   BACKGROUND GLOWS
+========================= */
+
+.bg-glow{
+    position: fixed;
+
+    border-radius: 50%;
+
+    filter: blur(160px);
+
+    z-index: -2;
+
+    opacity: 0.25;
+
+    animation:
+        glowFloat 12s ease-in-out infinite;
+}
+
+/* LEFT GLOW */
+
+.bg-glow-1{
+    width: 500px;
+    height: 500px;
+
+    background:
+        rgba(22,101,52,0.35);
+
+    top: -180px;
+    left: -180px;
+}
+
+/* RIGHT GLOW */
+
+.bg-glow-2{
+    width: 420px;
+    height: 420px;
+
+    background:
+        rgba(15,118,110,0.20);
+
+    bottom: -120px;
+    right: -120px;
+
+    animation-delay: 4s;
+}
+
+/* =========================
+   CURSOR GLOW
+========================= */
+
+.cursor-glow{
+    width: 70px;
+    height: 70px;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(34,197,94,0.32) 0%,
+            rgba(20,184,166,0.18) 42%,
+            transparent 75%
+        );
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%);
+
+    z-index: 999;
+
+    filter: blur(28px);
+
+    opacity: 1;
+
+    mix-blend-mode: screen;
+
+    transition:
+        left 0.05s linear,
+        top 0.05s linear;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    font-family: inherit;
+}
+
+/* PRIMARY */
+
+.btn-primary{
+    background:
+        linear-gradient(
+            135deg,
+            #16a34a,
+            #14b8a6
+        );
+
+    color: white;
+
+    padding: 16px 30px;
+
+    border-radius: 999px;
+
+    font-weight: 600;
+
+    font-size: 15px;
+
+    box-shadow:
+        0 0 25px rgba(22,163,74,0.22);
+}
+
+.btn-primary:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 0 40px rgba(22,163,74,0.35);
+}
+
+/* SECONDARY */
+
+.btn-secondary{
+    background:
+        rgba(255,255,255,0.04);
+
+    color: white;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    padding: 14px 24px;
+
+    border-radius: 999px;
+
+    backdrop-filter: blur(20px);
+}
+
+.btn-secondary:hover{
+    background:
+        rgba(255,255,255,0.08);
+}
+
+/* GLASS BUTTON */
+
+.btn-glass{
+    background:
+        rgba(255,255,255,0.05);
+
+    color: white;
+
+    padding: 16px 28px;
+
+    border-radius: 999px;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(20px);
+}
+
+.btn-glass:hover{
+    background:
+        rgba(255,255,255,0.08);
+}
+
+/* =========================
+   LINKS
+========================= */
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================
+   MAIN CONTENT LAYER
+========================= */
+
+.navbar,
+.hero-left,
+.hero-right,
+section{
+    position: relative;
+    z-index: 5;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes glowFloat{
+
+    0%{
+        transform:
+            translateY(0px)
+            translateX(0px)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translateY(-25px)
+            translateX(15px)
+            scale(1.05);
+    }
+
+    100%{
+        transform:
+            translateY(0px)
+            translateX(0px)
+            scale(1);
+    }
+
+}

@@ -11,7 +11,7 @@
     />
 
     <title>
-        AgriConnect Login
+        AgriConnect Signup
     </title>
 
     <!-- GOOGLE FONT -->
@@ -62,17 +62,17 @@
         <div class="auth-left">
 
             <span class="auth-tag">
-                AGRICONNECT ACCESS
+                JOIN AGRICONNECT
             </span>
 
             <h1>
-                Welcome Back
+                Create Account
             </h1>
 
             <p>
-                Access the intelligent agriculture ecosystem
-                connecting farmers, buyers, and smart
-                marketplace solutions.
+                Join the next-generation digital agriculture
+                ecosystem designed for smart farming and
+                intelligent marketplace experiences.
             </p>
 
         </div>
@@ -84,10 +84,25 @@
             <div class="auth-card">
 
                 <h2>
-                    Login
+                    Sign Up
                 </h2>
 
                 <form>
+
+                    <!-- NAME -->
+
+                    <div class="input-group">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Enter full name"
+                        />
+
+                    </div>
 
                     <!-- EMAIL -->
 
@@ -99,7 +114,7 @@
 
                         <input
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder="Enter email"
                         />
 
                     </div>
@@ -114,46 +129,56 @@
 
                         <input
                             type="password"
-                            placeholder="Enter password"
+                            placeholder="Create password"
                         />
 
                     </div>
 
-                    <!-- OPTIONS -->
+                    <!-- ROLE -->
 
-                    <div class="auth-options">
+                    <div class="input-group">
 
-                        <label class="remember">
-
-                            <input type="checkbox" />
-
-                            Remember me
-
+                        <label>
+                            Select Role
                         </label>
 
-                        <a href="#">
-                            Forgot Password?
-                        </a>
+                        <select>
+
+                            <option>
+                                Farmer
+                            </option>
+
+                            <option>
+                                Buyer
+                            </option>
+
+                            <option>
+                                Seller
+                            </option>
+
+                        </select>
 
                     </div>
 
                     <!-- BUTTON -->
 
-<a
-    href="buyer-dashboard.html"
-    class="auth-btn"
->
-    Login
-</a>
+                    <button
+                        type="submit"
+                        class="auth-btn"
+                    >
+                        Create Account
+                    </button>
+
+                </form>
 
                 <!-- FOOTER -->
 
                 <div class="auth-footer">
 
-                    Don't have an account?
+                    Already have an account?
 
-                    <a href="signup.html">
-                        Create Account
+                    <a href="login.html">
+                        Login
                     </a>
 
                 </div>

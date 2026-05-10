@@ -3,303 +3,490 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
 
-  <title>
-    AgriConnect | Home
-  </title>
+    <title>
+        AgriConnect — Future of Agriculture
+    </title>
 
-  <link
-    rel="stylesheet"
-    href="styles.css"
-  />
+    <!-- GOOGLE FONTS -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    />
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- CSS FILES -->
+
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
 
 </head>
 
 <body>
 
-  <!-- ========================= -->
-  <!-- NAVBAR -->
-  <!-- ========================= -->
+    <!-- CURSOR GLOW -->
 
-  <nav class="navbar">
+    <div class="cursor-glow"></div>
 
-    <a
-      href="index.html"
-      class="logo"
-    >
-      🌿 AgriConnect
-    </a>
+    <!-- BACKGROUND GLOWS -->
 
-    <button
-      class="menu-btn"
-      onclick="toggleMenu()"
-    >
-      ☰
-    </button>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
 
-    <div
-      class="nav-links"
-      id="navLinks"
-    >
+    <!-- =========================
+         NAVBAR
+    ========================== -->
 
-      <a href="index.html">
-        Home
-      </a>
+    <header class="navbar">
 
-      <a href="buyer.html">
-        Buyer
-      </a>
+        <div class="logo">
 
-      <a href="farmer.html">
-        Farmer
-      </a>
+            <span class="logo-icon">
+                ◉
+            </span>
 
-      <a href="equipment.html">
-        Equipment
-      </a>
+            AgriConnect
 
-      <a href="login.html">
-        Login
-      </a>
+        </div>
 
-    </div>
+        <nav class="nav-links">
 
-  </nav>
+            <a href="index.html">
+                Home
+            </a>
 
-  <!-- ========================= -->
-  <!-- HERO SECTION -->
-  <!-- ========================= -->
+            <a href="marketplace.html">
+                Marketplace
+            </a>
 
-  <header class="hero-section">
+            <a href="#">
+                Features
+            </a>
 
-    <div class="hero-content">
+            <a href="#">
+                About
+            </a>
 
-      <span class="badge">
-        Smart Agriculture Marketplace
-      </span>
+            <a href="#">
+                Contact
+            </a>
 
-      <h1>
+        </nav>
 
-        Connect Farmers,
-        Buyers & Equipment Owners
+        <div class="nav-buttons">
 
-      </h1>
+            <a
+                href="login.html"
+                class="btn-secondary"
+            >
+                Login
+            </a>
 
-      <p>
+            <a
+                href="signup.html"
+                class="btn-primary"
+            >
+                Get Started
+            </a>
 
-        AgriConnect helps farmers sell crops directly,
-        buyers purchase fresh produce,
-        and equipment owners rent machinery efficiently.
+        </div>
 
-      </p>
+    </header>
 
-      <div class="hero-buttons">
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
 
-        <a
-          href="login.html"
-          class="primary-btn"
-        >
-          Get Started
-        </a>
+    <section class="hero">
 
-        <a
-          href="buyer.html"
-          class="secondary-btn"
-        >
-          Explore Marketplace
-        </a>
+        <!-- GRID -->
 
-      </div>
+        <div class="hero-grid"></div>
 
-    </div>
+        <!-- LEFT -->
 
-    <div class="hero-image">
+        <div class="hero-left reveal">
 
-      <img
-        src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1200"
-        alt="Agriculture"
-      />
+            <span class="hero-tag">
+                AI POWERED AGRICULTURE
+            </span>
 
-    </div>
+            <h1>
+                Agriculture.<br />
+                Reimagined.
+            </h1>
 
-  </header>
+            <p>
+                The intelligent digital marketplace connecting
+                farmers, buyers, and AI-powered insights into
+                one seamless ecosystem.
+            </p>
 
-  <!-- ========================= -->
-  <!-- FEATURES -->
-  <!-- ========================= -->
+            <div class="hero-buttons">
 
-  <section class="features-section">
+                <a
+                    href="marketplace.html"
+                    class="btn-primary"
+                >
+                    Explore Marketplace
+                </a>
 
-    <h2>
-      Platform Features
-    </h2>
+                <a
+                    href="signup.html"
+                    class="btn-glass"
+                >
+                    Join AgriConnect
+                </a>
 
-    <div class="features-grid">
+            </div>
 
-      <!-- FEATURE 1 -->
+        </div>
 
-      <div class="feature-card">
+        <!-- RIGHT -->
 
-        <img
-          src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=700"
-          alt="Farmer"
-        />
+        <div class="hero-right reveal delay">
 
-        <h3>
-          Farmer Marketplace
-        </h3>
+            <div class="hero-visual-clean">
 
-        <p>
+                <div class="hero-core"></div>
 
-          Farmers can upload and sell crops directly
-          without middlemen.
+                <div class="orbit orbit-1"></div>
+                <div class="orbit orbit-2"></div>
 
-        </p>
+                <div class="eco-node node-1">
+                    Farmers
+                </div>
 
-      </div>
+                <div class="eco-node node-2">
+                    Buyers
+                </div>
 
-      <!-- FEATURE 2 -->
+                <div class="eco-node node-3">
+                    AI
+                </div>
 
-      <div class="feature-card">
+                <div class="eco-node node-4">
+                    Logistics
+                </div>
 
-        <img
-          src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700"
-          alt="Buyer"
-        />
+            </div>
 
-        <h3>
-          Fresh Produce Buying
-        </h3>
+        </div>
 
-        <p>
+    </section>
 
-          Buyers can search and purchase
-          fresh crops directly from farmers.
+    <!-- =========================
+         FEATURES SECTION
+    ========================== -->
 
-        </p>
+    <section class="features">
 
-      </div>
+        <div class="section-header reveal">
 
-      <!-- FEATURE 3 -->
+            <span class="section-tag">
+                PLATFORM FEATURES
+            </span>
 
-      <div class="feature-card">
+            <h2>
+                Agriculture powered by intelligence.
+            </h2>
 
-        <img
-          src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=700"
-          alt="Equipment"
-        />
+            <p>
+                AgriConnect combines AI, marketplace systems,
+                analytics, and logistics into one seamless
+                digital agriculture ecosystem.
+            </p>
 
-        <h3>
-          Equipment Rental
-        </h3>
+        </div>
 
-        <p>
+        <div class="features-grid">
 
-          Rent tractors, harvesters,
-          pumps and more farming equipment.
+            <!-- CARD 1 -->
 
-        </p>
+            <div class="feature-card reveal">
 
-      </div>
+                <div class="feature-icon">
+                    ◈
+                </div>
 
-    </div>
+                <h3>
+                    Smart Marketplace
+                </h3>
 
-  </section>
+                <p>
+                    Connect farmers and buyers directly
+                    with transparent digital trading.
+                </p>
 
-  <!-- ========================= -->
-  <!-- STATS -->
-  <!-- ========================= -->
+            </div>
 
-  <section class="stats-section">
+            <!-- CARD 2 -->
 
-    <div class="stat-card">
+            <div class="feature-card reveal delay">
 
-      <h2>
-        500+
-      </h2>
+                <div class="feature-icon">
+                    ◎
+                </div>
 
-      <p>
-        Farmers Connected
-      </p>
+                <h3>
+                    AI Crop Intelligence
+                </h3>
 
-    </div>
+                <p>
+                    Predict crop performance using
+                    AI-driven agricultural insights.
+                </p>
 
-    <div class="stat-card">
+            </div>
 
-      <h2>
-        1200+
-      </h2>
+            <!-- CARD 3 -->
 
-      <p>
-        Buyers Registered
-      </p>
+            <div class="feature-card reveal">
 
-    </div>
+                <div class="feature-icon">
+                    ✦
+                </div>
 
-    <div class="stat-card">
+                <h3>
+                    Live Pricing Engine
+                </h3>
 
-      <h2>
-        300+
-      </h2>
+                <p>
+                    Access real-time agricultural
+                    pricing and market demand data.
+                </p>
 
-      <p>
-        Equipment Listings
-      </p>
+            </div>
 
-    </div>
+            <!-- CARD 4 -->
 
-  </section>
+            <div class="feature-card reveal delay">
 
-  <!-- ========================= -->
-  <!-- CTA -->
-  <!-- ========================= -->
+                <div class="feature-icon">
+                    ◌
+                </div>
 
-  <section class="cta-section">
+                <h3>
+                    Logistics Network
+                </h3>
 
-    <h2>
-      Join AgriConnect Today 🌱
-    </h2>
+                <p>
+                    Streamline transport and
+                    product distribution efficiently.
+                </p>
 
-    <p>
+            </div>
 
-      Empower agriculture with technology,
-      direct trade and smarter farming.
+        </div>
 
-    </p>
+    </section>
 
-    <a
-      href="login.html"
-      class="primary-btn"
-    >
-      Join Now
-    </a>
+    <!-- =========================
+         EXPERIENCE SECTION
+    ========================== -->
 
-  </section>
+    <section class="experience">
 
-  <!-- ========================= -->
-  <!-- FOOTER -->
-  <!-- ========================= -->
+        <div class="experience-left reveal">
 
-  <footer class="footer">
+            <span class="section-tag">
+                FUTURE ECOSYSTEM
+            </span>
 
-    <p>
-      © 2026 AgriConnect.
-      All Rights Reserved.
-    </p>
+            <h2>
+                Built for the next generation
+                of digital agriculture.
+            </h2>
 
-  </footer>
+            <p>
+                AgriConnect combines AI-powered analytics,
+                smart trading infrastructure, logistics,
+                and intelligent market systems into one
+                seamless platform experience.
+            </p>
 
-  <!-- ========================= -->
-  <!-- SCRIPT -->
-  <!-- ========================= -->
+        </div>
 
-  <script src="app.js"></script>
+    </section>
+
+    <!-- =========================
+         MARKETPLACE SECTION
+    ========================== -->
+
+    <section class="marketplace-section">
+
+        <div class="section-header reveal">
+
+            <span class="section-tag">
+                DIGITAL MARKETPLACE
+            </span>
+
+            <h2>
+                Explore agricultural products
+                in a smarter ecosystem.
+            </h2>
+
+            <p>
+                Discover crops, equipment, fertilizers,
+                and farming essentials inside a
+                next-generation marketplace platform.
+            </p>
+
+        </div>
+
+        <div class="market-grid">
+
+            <!-- CARD 1 -->
+
+            <div class="market-card reveal">
+
+                <div class="market-image image-1"></div>
+
+                <div class="market-content">
+
+                    <span class="market-category">
+                        Organic Crops
+                    </span>
+
+                    <h3>
+                        Premium Wheat
+                    </h3>
+
+                    <p>
+                        AI-verified quality wheat
+                        directly from farmers.
+                    </p>
+
+                    <div class="market-bottom">
+
+                        <span class="market-price">
+                            ₹2,450 / quintal
+                        </span>
+
+                        <a
+                            href="marketplace.html"
+                            class="market-btn"
+                        >
+                            View
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 2 -->
+
+            <div class="market-card reveal delay">
+
+                <div class="market-image image-2"></div>
+
+                <div class="market-content">
+
+                    <span class="market-category">
+                        Smart Equipment
+                    </span>
+
+                    <h3>
+                        AI Irrigation Kit
+                    </h3>
+
+                    <p>
+                        Automated irrigation systems
+                        optimized for efficiency.
+                    </p>
+
+                    <div class="market-bottom">
+
+                        <span class="market-price">
+                            ₹18,999
+                        </span>
+
+                        <a
+                            href="marketplace.html"
+                            class="market-btn"
+                        >
+                            View
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 3 -->
+
+            <div class="market-card reveal">
+
+                <div class="market-image image-3"></div>
+
+                <div class="market-content">
+
+                    <span class="market-category">
+                        Fertilizers
+                    </span>
+
+                    <h3>
+                        Bio Nutrient Mix
+                    </h3>
+
+                    <p>
+                        Sustainable soil nutrition
+                        powered by smart analytics.
+                    </p>
+
+                    <div class="market-bottom">
+
+                        <span class="market-price">
+                            ₹1,250 / bag
+                        </span>
+
+                        <a
+                            href="marketplace.html"
+                            class="market-btn"
+                        >
+                            View
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/effects.js"></script>
 
 </body>
 
