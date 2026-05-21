@@ -5,7 +5,7 @@
 const PAYMENT_API =
     typeof API_BASE_URL !== "undefined"
         ? `${API_BASE_URL}/payments`
-        : "http://localhost:5000/api/payments";
+        : "http://https://agriconnect-backend-3yti.onrender.com/api/payments";
 
 function getAuthHeaders(
     token

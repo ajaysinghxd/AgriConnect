@@ -3,10 +3,10 @@
 ========================================================= */
 
 const PRODUCT_API =
-    "http://localhost:5000/api/products";
+    "http://https://agriconnect-backend-3yti.onrender.com/api/products";
 
 const EQUIPMENT_API =
-    "http://localhost:5000/api/equipment";
+    "http://https://agriconnect-backend-3yti.onrender.com/api/equipment";
 
 /* =========================================================
    USER

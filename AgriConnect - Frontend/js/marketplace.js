@@ -3,7 +3,7 @@
 ========================= */
 
 const API_URL =
-    "http://localhost:5000/api/products";
+    "http://https://agriconnect-backend-3yti.onrender.com/api/products";
 
 
 /* =========================
@@ -450,7 +450,7 @@ document.addEventListener(
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/orders",
+                        "http://https://agriconnect-backend-3yti.onrender.com/api/orders",
                         {
                             method: "POST",
 

@@ -3,7 +3,7 @@
 ========================================================= */
 
 const API_URL =
-    "http://localhost:5000/api/equipment";
+    "http://https://agriconnect-backend-3yti.onrender.com/api/equipment";
 
 /* =========================================================
    GLOBAL STATE
@@ -584,7 +584,7 @@ document.addEventListener(
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/rentals",
+                        "http://https://agriconnect-backend-3yti.onrender.com/api/rentals",
                         {
                             method: "POST",
 
@@ -746,7 +746,7 @@ const price =
 
                 const response =
                     await fetch(
-                        "http://localhost:5000/api/orders",
+                        "http://https://agriconnect-backend-3yti.onrender.com/api/orders",
                         {
                             method: "POST",
 

@@ -4,7 +4,7 @@ console.log("AUTH JS LOADED");
 ========================================================= */
 
 const API_URL =
-    "http://localhost:5000/api/auth";
+    "http://https://agriconnect-backend-3yti.onrender.com/api/auth";
 
 /* =========================================================
    INPUT ANIMATION

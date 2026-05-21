@@ -9,12 +9,12 @@ const CHAT_HISTORY_KEY =
 const AI_CHAT_API =
     typeof API_BASE_URL !== "undefined"
         ? `${API_BASE_URL}/ai/chat`
-        : "http://localhost:5000/api/ai/chat";
+        : "http://https://agriconnect-backend-3yti.onrender.com/api/ai/chat";
 
 const AI_STATUS_API =
     typeof API_BASE_URL !== "undefined"
         ? `${API_BASE_URL}/ai/status`
-        : "http://localhost:5000/api/ai/status";
+        : "http://https://agriconnect-backend-3yti.onrender.com/api/ai/status";
 
 const QUICK_PROMPTS = [
     "Best crops for monsoon?",
