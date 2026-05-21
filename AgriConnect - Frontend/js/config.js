@@ -1,2 +1,1 @@
-const API_BASE_URL =
-    "https://agriconnect-backend-3yti.onrender.com/api";
+const API_BASE_URL = "https://agriconnect-backend-3yti.onrender.com/api";
