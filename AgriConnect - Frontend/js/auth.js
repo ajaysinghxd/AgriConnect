@@ -1,6 +1,14 @@
-/* =========================
-   AUTH INPUT ANIMATION
-========================= */
+console.log("AUTH JS LOADED");
+/* =========================================================
+   API URL
+========================================================= */
+
+const API_URL =
+    "http://localhost:5000/api/auth";
+
+/* =========================================================
+   INPUT ANIMATION
+========================================================= */
 
 const authInputs =
     document.querySelectorAll(
@@ -13,53 +21,203 @@ authInputs.forEach((input) => {
 
         input.parentElement.style.transform =
             'translateY(-2px)';
-
     });
 
     input.addEventListener('blur', () => {
 
         input.parentElement.style.transform =
             'translateY(0px)';
-
     });
-
 });
 
+/* =========================================================
+   LOGIN
+========================================================= */
 
-/* =========================
-   API URL
-========================= */
+const loginForm =
+    document.querySelector('#loginForm');
 
-const API_URL =
-    "http://localhost:5000/api/auth";
+if (loginForm) {
 
-
-/* =========================
-   SIGNUP
-========================= */
-
-const signupForm =
-    document.querySelector(".signup-form");
-
-if (signupForm) {
-
-    signupForm.addEventListener(
-        "submit",
+    loginForm.addEventListener(
+        'submit',
         async (e) => {
 
             e.preventDefault();
 
-            const name =
-                document.querySelector("#signup-name").value;
+            const emailInput =
+                document.querySelector('#email');
+
+            const passwordInput =
+                document.querySelector('#password');
+
+            if (
+                !emailInput ||
+                !passwordInput
+            ) {
+                alert(
+                    'Login inputs not found'
+                );
+
+                return;
+            }
 
             const email =
-                document.querySelector("#signup-email").value;
+                emailInput.value.trim();
 
             const password =
-                document.querySelector("#signup-password").value;
+                passwordInput.value.trim();
+
+            if (!email || !password) {
+
+                alert(
+                    'Please fill all fields'
+                );
+
+                return;
+            }
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/login`,
+                        {
+                            method: 'POST',
+
+                            headers: {
+                                'Content-Type':
+                                    'application/json'
+                            },
+
+                            body: JSON.stringify({
+                                email,
+                                password
+                            })
+                        }
+                    );
+
+                const data =
+                    await response.json();
+
+                if (!response.ok) {
+
+                    alert(
+                        data.message ||
+                        'Login failed'
+                    );
+
+                    return;
+                }
+
+                localStorage.setItem(
+                    'token',
+                    data.token
+                );
+
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify(data)
+                );
+
+                alert(
+                    'Login successful ✅'
+                );
+
+                setTimeout(() => {
+
+                    if (data.role === 'farmer') {
+
+                        window.location.href =
+                            'farmer-dashboard.html';
+
+                    } else {
+
+                        window.location.href =
+                            'buyer-dashboard.html';
+                    }
+
+                }, 800);
+
+            }
+
+            catch (error) {
+
+                console.log(error);
+
+                alert(
+                    'Server error'
+                );
+            }
+        }
+    );
+}
+
+/* =========================================================
+   SIGNUP
+========================================================= */
+
+const signupForm =
+    document.querySelector('#signupForm');
+console.log(signupForm);
+if (signupForm) {
+
+    signupForm.addEventListener(
+        'submit',
+        async (e) => {
+
+            e.preventDefault();
+
+            const nameInput =
+                document.querySelector('#name');
+
+            const emailInput =
+                document.querySelector('#email');
+
+            const passwordInput =
+                document.querySelector('#password');
+
+            const roleInput =
+                document.querySelector('#role');
+
+            if (
+                !nameInput ||
+                !emailInput ||
+                !passwordInput ||
+                !roleInput
+            ) {
+                alert(
+                    'Signup inputs not found'
+                );
+
+                return;
+            }
+
+            const name =
+                nameInput.value.trim();
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value.trim();
 
             const role =
-                document.querySelector("#signup-role").value;
+                roleInput.value;
+
+            if (
+                !name ||
+                !email ||
+                !password ||
+                !role
+            ) {
+
+                alert(
+                    'Please fill all fields'
+                );
+
+                return;
+            }
 
             try {
 
@@ -67,11 +225,11 @@ if (signupForm) {
                     await fetch(
                         `${API_URL}/register`,
                         {
-                            method: "POST",
+                            method: 'POST',
 
                             headers: {
-                                "Content-Type":
-                                    "application/json"
+                                'Content-Type':
+                                    'application/json'
                             },
 
                             body: JSON.stringify({
@@ -90,39 +248,40 @@ if (signupForm) {
 
                     alert(
                         data.message ||
-                        "Signup failed"
+                        'Signup failed'
                     );
 
                     return;
                 }
 
                 localStorage.setItem(
-                    "token",
+                    'token',
                     data.token
                 );
 
                 localStorage.setItem(
-                    "user",
+                    'user',
                     JSON.stringify(data)
                 );
 
                 alert(
-                    "Account created successfully ✅"
+                    'Account created successfully ✅'
                 );
 
-                if (data.role === "farmer") {
+                setTimeout(() => {
 
-                    window.location.href =
-                        "farmer-dashboard.html";
+                    if (data.role === 'farmer') {
 
-                }
+                        window.location.href =
+                            'farmer-dashboard.html';
 
-                else {
+                    } else {
 
-                    window.location.href =
-                        "buyer-dashboard.html";
+                        window.location.href =
+                            'buyer-dashboard.html';
+                    }
 
-                }
+                }, 800);
 
             }
 
@@ -131,112 +290,9 @@ if (signupForm) {
                 console.log(error);
 
                 alert(
-                    "Server error"
+                    'Server error'
                 );
-
             }
-
         }
     );
-
-}
-
-
-/* =========================
-   LOGIN
-========================= */
-
-const loginForm =
-    document.querySelector(".login-form");
-
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        async (e) => {
-
-            e.preventDefault();
-
-            const email =
-                document.querySelector("#login-email").value;
-
-            const password =
-                document.querySelector("#login-password").value;
-
-            try {
-
-                const response =
-                    await fetch(
-                        `${API_URL}/login`,
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
-
-                            body: JSON.stringify({
-                                email,
-                                password
-                            })
-                        }
-                    );
-
-                const data =
-                    await response.json();
-
-                if (!response.ok) {
-
-                    alert(
-                        data.message ||
-                        "Login failed"
-                    );
-
-                    return;
-                }
-
-                localStorage.setItem(
-                    "token",
-                    data.token
-                );
-
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify(data)
-                );
-
-                alert(
-                    "Login successful ✅"
-                );
-
-                if (data.role === "farmer") {
-
-                    window.location.href =
-                        "farmer-dashboard.html";
-
-                }
-
-                else {
-
-                    window.location.href =
-                        "buyer-dashboard.html";
-
-                }
-
-            }
-
-            catch (error) {
-
-                console.log(error);
-
-                alert(
-                    "Server error"
-                );
-
-            }
-
-        }
-    );
-
 }

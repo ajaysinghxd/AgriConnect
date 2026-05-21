@@ -11,7 +11,7 @@
     />
 
     <title>
-        AgriConnect Marketplace
+        AgriConnect Equipment Hub
     </title>
 
     <!-- GOOGLE FONT -->
@@ -79,16 +79,16 @@
                 Marketplace
             </a>
 
-            <a href="#">
-                Categories
+            <a href="equipment.html">
+                Equipment Hub
             </a>
 
             <a href="#">
-                Sellers
+                Rentals
             </a>
 
             <a href="#">
-                Contact
+                AI Solutions
             </a>
 
         </nav>
@@ -106,7 +106,7 @@
                 href="signup.html"
                 class="btn-primary"
             >
-                Sell Products
+                Become Seller
             </a>
 
         </div>
@@ -114,7 +114,7 @@
     </header>
 
     <!-- =========================
-         MARKETPLACE HERO
+         HERO
     ========================== -->
 
     <section class="marketplace-hero">
@@ -122,18 +122,19 @@
         <div class="marketplace-hero-content">
 
             <span class="marketplace-tag">
-                DIGITAL AGRICULTURE MARKETPLACE
+                AI POWERED FARM EQUIPMENT HUB
             </span>
 
             <h1>
-                Explore Premium
-                Agricultural Products
+                Buy & Rent
+                Smart Farming Equipment
             </h1>
 
             <p>
-                Discover crops, farming equipment,
-                fertilizers, seeds, and smart agriculture
-                solutions inside the AgriConnect ecosystem.
+                Discover tractors, drones,
+                harvesters, irrigation systems,
+                smart sensors and premium agricultural
+                machinery inside the AgriConnect ecosystem.
             </p>
 
             <!-- SEARCH -->
@@ -142,7 +143,7 @@
 
                 <input
                     type="text"
-                    placeholder="Search crops, tractors, fertilizers..."
+                    placeholder="Search tractors, drones, harvesters..."
                 />
 
                 <button>
@@ -156,7 +157,7 @@
     </section>
 
     <!-- =========================
-         MAIN MARKETPLACE
+         MAIN EQUIPMENT AREA
     ========================== -->
 
     <section class="marketplace-main">
@@ -166,47 +167,60 @@
         <aside class="market-sidebar">
 
             <h3>
-                Categories
+                Equipment Categories
             </h3>
 
             <div class="filter-list">
 
-                <button class="active">
-                    All Products
+                <button
+                    class="active"
+                    data-category="all"
+                >
+                    All Equipment
                 </button>
 
-                <button>
-                    Crops
+                <button
+                    data-category="tractor"
+                >
+                    Tractors
                 </button>
 
-                <button>
-                    Equipment
+                <button
+                    data-category="drone"
+                >
+                    Drones
                 </button>
 
-                <button>
-                    Fertilizers
+                <button
+                    data-category="harvester"
+                >
+                    Harvesters
                 </button>
 
-                <button>
-                    Seeds
+                <button
+                    data-category="irrigation"
+                >
+                    Irrigation
                 </button>
 
-                <button>
-                    Organic Products
+                <button
+                    data-category="rotavator"
+                >
+                    Rotavators
                 </button>
 
             </div>
 
         </aside>
 
-        <!-- PRODUCT AREA -->
+        <!-- EQUIPMENT GRID -->
 
         <div
             class="market-products"
-            id="market-products"
+            id="equipment-container"
         >
 
-            <!-- PRODUCTS LOAD DYNAMICALLY -->
+            <!-- EQUIPMENT LOADS DYNAMICALLY -->
 
         </div>
 
@@ -218,7 +232,7 @@
     <script src="js/utils.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/effects.js"></script>
-    <script src="js/marketplace.js"></script>
+    <script src="js/equipment.js"></script>
     <script src="js/chatbot.js"></script>
 
 </body>

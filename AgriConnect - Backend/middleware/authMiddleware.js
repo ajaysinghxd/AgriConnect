@@ -11,50 +11,62 @@ const protect = async (
     let token;
 
     if (
-        req.headers.authorization &&
-        req.headers.authorization.startsWith(
+        !req.headers.authorization ||
+        !req.headers.authorization.startsWith(
             "Bearer"
         )
     ) {
 
-        try {
+        return res.status(401).json({
+            message:
+                "No token provided"
+        });
 
-            token =
-                req.headers.authorization.split(
-                    " "
-                )[1];
+    }
 
-            const decoded =
-                jwt.verify(
-                    token,
-                    process.env.JWT_SECRET
-                );
+    try {
 
-            req.user =
-                await User.findById(
-                    decoded.id
-                ).select("-password");
+        token =
+            req.headers.authorization.split(
+                " "
+            )[1];
 
-            next();
+        const decoded =
+            jwt.verify(
+                token,
+                process.env.JWT_SECRET
+            );
 
-        }
+        req.user =
+            await User.findById(
+                decoded.id
+            ).select("-password");
 
-        catch (error) {
+        if (
+            !req.user
+        ) {
 
-            res.status(401).json({
+            return res.status(401).json({
                 message:
-                    "Not authorized"
+                    "User not found"
             });
 
         }
 
+        return next();
+
     }
 
-    if (!token) {
+    catch (error) {
 
-        res.status(401).json({
+        console.error(
+            "[Auth] Token verification failed:",
+            error.message
+        );
+
+        return res.status(401).json({
             message:
-                "No token provided"
+                "Not authorized"
         });
 
     }

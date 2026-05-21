@@ -27,78 +27,6 @@ const productsContainer =
 
 
 /* =========================
-   PREMIUM TOAST SYSTEM
-========================= */
-
-function showToast(
-    message,
-    type = "info"
-) {
-
-    let toastContainer =
-        document.querySelector(
-            ".toast-container"
-        );
-
-    if (!toastContainer) {
-
-        toastContainer =
-            document.createElement(
-                "div"
-            );
-
-        toastContainer.className =
-            "toast-container";
-
-        document.body.appendChild(
-            toastContainer
-        );
-
-    }
-
-    const toast =
-        document.createElement("div");
-
-    toast.className =
-        `toast toast-${type}`;
-
-    toast.innerHTML = `
-
-        <span>
-            ${message}
-        </span>
-
-        <span class="toast-close">
-            ✕
-        </span>
-
-    `;
-
-    toastContainer.appendChild(
-        toast
-    );
-
-    toast
-        .querySelector(".toast-close")
-        .addEventListener(
-            "click",
-            () => {
-
-                toast.remove();
-
-            }
-        );
-
-    setTimeout(() => {
-
-        toast.remove();
-
-    }, 4000);
-
-}
-
-
-/* =========================
    LOAD PRODUCTS
 ========================= */
 
@@ -211,16 +139,37 @@ function renderProducts(products) {
                         ₹${product.price}
                     </span>
 
-                    <button
-                        class="product-view-btn buy-btn"
-                        data-name="${product.name}"
-                        data-price="${product.price}"
-                        data-farmer="${product.farmerName}"
-                        data-location="${product.location}"
-                        data-image="${product.image}"
-                    >
-                        Buy Now
-                    </button>
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-view-btn add-cart-btn"
+                            data-type="product"
+                            data-mode="buy"
+                            data-id="${product._id}"
+                            data-name="${product.name}"
+                            data-price="${product.price}"
+                            data-seller="${product.farmerName}"
+                            data-seller-id="${product.farmerId || ''}"
+                            data-location="${product.location}"
+                            data-image="${product.image}"
+                        >
+                            Add to Cart
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-view-btn buy-btn"
+                            data-name="${product.name}"
+                            data-price="${product.price}"
+                            data-farmer="${product.farmerName}"
+                            data-location="${product.location}"
+                            data-image="${product.image}"
+                        >
+                            Buy Now
+                        </button>
+
+                    </div>
 
                 </div>
 

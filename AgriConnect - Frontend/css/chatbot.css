@@ -1,0 +1,643 @@
+/* =========================================================
+   AgriConnect AI Chatbot — Premium Futuristic UI
+   Neon agriculture · glassmorphism · SaaS quality
+========================================================= */
+
+.agri-chatbot {
+    --agri-neon: #22c55e;
+    --agri-neon-light: #86efac;
+    --agri-teal: #14b8a6;
+    --agri-glass: rgba(8, 14, 28, 0.88);
+    --agri-border: rgba(34, 197, 94, 0.22);
+    --agri-glow: rgba(34, 197, 94, 0.35);
+
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99990;
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ========================= FLOATING TOGGLE ========================= */
+
+.agri-chat-toggle {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background: linear-gradient(145deg, #0f172a 0%, #052e16 100%);
+    border: 1px solid var(--agri-border);
+    color: var(--agri-neon-light);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.45),
+        0 0 30px var(--agri-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    animation: agriFloat 4s ease-in-out infinite;
+}
+
+.agri-chat-toggle:hover {
+    transform: translateY(-6px) scale(1.06);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 45px var(--agri-glow);
+}
+
+.agri-chat-toggle-glow {
+    position: absolute;
+    inset: -3px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--agri-neon), var(--agri-teal));
+    opacity: 0.35;
+    filter: blur(8px);
+    z-index: -1;
+    animation: agriPulseGlow 2.5s ease infinite;
+}
+
+.agri-chat-toggle-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.agri-chat-toggle-icon .agri-ai-logo-svg,
+.agri-chat-avatar .agri-ai-logo-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.agri-chat-toggle-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: var(--agri-neon-light);
+}
+
+.agri-chatbot.is-open .agri-chat-toggle {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8) translateY(20px);
+    animation: none;
+}
+
+@keyframes agriFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+@keyframes agriPulseGlow {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 0.5; }
+}
+
+/* ========================= PANEL ========================= */
+
+.agri-chat-panel {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 420px;
+    max-width: calc(100vw - 24px);
+    height: min(620px, calc(100vh - 48px));
+    display: flex;
+    flex-direction: column;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--agri-glass);
+    border: 1px solid var(--agri-border);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+        0 0 60px rgba(34, 197, 94, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.96);
+    transition:
+        opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.4s;
+}
+
+.agri-chatbot.is-open .agri-chat-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.agri-chat-panel-glow {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.2), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ========================= HEADER ========================= */
+
+.agri-chat-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: linear-gradient(180deg, rgba(34, 197, 94, 0.12) 0%, transparent 100%);
+}
+
+.agri-chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.agri-chat-avatar {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid var(--agri-border);
+    padding: 6px;
+}
+
+.agri-chat-avatar--animated {
+    animation: agriAvatarSpin 8s linear infinite;
+}
+
+@keyframes agriAvatarSpin {
+    0%, 90% { transform: rotate(0deg); }
+    95% { transform: rotate(8deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.agri-chat-status-dot {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #0a0f1c;
+    background: #64748b;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.agri-chat-status-dot.is-online {
+    background: var(--agri-neon);
+    box-shadow: 0 0 12px var(--agri-neon);
+    animation: agriStatusPulse 2s ease infinite;
+}
+
+.agri-chat-status-dot.is-offline {
+    background: #ef4444;
+}
+
+@keyframes agriStatusPulse {
+    0%, 100% { box-shadow: 0 0 8px var(--agri-neon); }
+    50% { box-shadow: 0 0 16px var(--agri-neon); }
+}
+
+.agri-chat-header h3 {
+    margin: 0 0 2px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+}
+
+.agri-chat-header p {
+    margin: 0;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.agri-chat-header-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.agri-chat-icon-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+.agri-chat-icon-btn:hover {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--agri-neon-light);
+    transform: translateY(-1px);
+}
+
+.agri-chat-icon-btn--close:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fecaca;
+}
+
+/* ========================= MESSAGES ========================= */
+
+.agri-chat-messages {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    scroll-behavior: smooth;
+}
+
+.agri-chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.agri-chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.agri-chat-messages::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--agri-neon), var(--agri-teal));
+    border-radius: 999px;
+}
+
+.agri-chat-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    animation: agriMsgIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.agri-chat-row--user {
+    flex-direction: row-reverse;
+}
+
+.agri-chat-row-avatar {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    padding: 4px;
+    border-radius: 10px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+.agri-chat-message {
+    max-width: 82%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.agri-chat-bubble-content {
+    padding: 12px 14px;
+    border-radius: 16px;
+    font-size: 13.5px;
+    line-height: 1.65;
+    word-wrap: break-word;
+}
+
+.agri-chat-row--user .agri-chat-bubble-content {
+    background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.25);
+}
+
+.agri-chat-row--assistant .agri-chat-bubble-content {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.92);
+    border-bottom-left-radius: 4px;
+}
+
+.agri-chat-bubble-content strong {
+    color: var(--agri-neon-light);
+    font-weight: 600;
+}
+
+.agri-chat-bubble-content code {
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: rgba(34, 197, 94, 0.15);
+    font-size: 12px;
+    color: var(--agri-neon-light);
+}
+
+.agri-chat-bubble-content ul {
+    margin: 8px 0 0;
+    padding-left: 18px;
+}
+
+.agri-chat-bubble-content li {
+    margin-bottom: 4px;
+}
+
+.agri-chat-bubble-content h4 {
+    margin: 8px 0 4px;
+    font-size: 13px;
+    color: var(--agri-neon-light);
+}
+
+.agri-chat-time {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.35);
+    padding: 0 4px;
+}
+
+.agri-chat-row--user .agri-chat-time {
+    text-align: right;
+}
+
+/* Welcome */
+
+.agri-chat-welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.agri-chat-welcome--animate {
+    animation: agriWelcomeIn 0.6s ease both;
+}
+
+@keyframes agriWelcomeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.agri-chat-welcome-icon {
+    width: 56px;
+    height: 56px;
+    padding: 10px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(20, 184, 166, 0.1));
+    border: 1px solid var(--agri-border);
+    animation: agriFloat 3s ease-in-out infinite;
+}
+
+.agri-chat-message--welcome {
+    max-width: 100%;
+}
+
+.agri-chat-message--welcome .agri-chat-bubble-content {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(20, 184, 166, 0.08));
+    border: 1px solid var(--agri-border);
+}
+
+@keyframes agriMsgIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================= QUICK PROMPTS ========================= */
+
+.agri-chat-prompts {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 14px 10px;
+}
+
+.agri-chat-prompt {
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(34, 197, 94, 0.28);
+    background: rgba(34, 197, 94, 0.06);
+    color: var(--agri-neon-light);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.agri-chat-prompt:hover {
+    background: rgba(34, 197, 94, 0.18);
+    border-color: var(--agri-neon);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(34, 197, 94, 0.2);
+}
+
+/* ========================= TYPING ========================= */
+
+.agri-chat-typing {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 8px 16px 12px;
+}
+
+.agri-chat-typing[hidden] {
+    display: none;
+}
+
+.agri-chat-typing-avatar {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.agri-chat-typing-bubble {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(34, 197, 94, 0.15);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.agri-chat-typing-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.agri-chat-typing-dots span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--agri-neon);
+    animation: agriTypingDot 1.4s ease infinite;
+}
+
+.agri-chat-typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.agri-chat-typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes agriTypingDot {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.35;
+    }
+    30% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
+}
+
+/* ========================= INPUT ========================= */
+
+.agri-chat-input-area {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 14px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.agri-chat-input-wrap {
+    flex: 1;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.agri-chat-input-wrap:focus-within {
+    border-color: var(--agri-border);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+.agri-chat-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.45;
+    outline: none;
+    resize: none;
+    max-height: 120px;
+    min-height: 44px;
+}
+
+.agri-chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.38);
+}
+
+.agri-chat-send {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--agri-neon), var(--agri-teal));
+    color: #04130a;
+    box-shadow: 0 8px 24px var(--agri-glow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.agri-chat-send:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 12px 32px var(--agri-glow);
+}
+
+.agri-chat-send:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.agri-chatbot.is-loading .agri-chat-send {
+    animation: agriSendPulse 1s ease infinite;
+}
+
+@keyframes agriSendPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ========================= RESPONSIVE ========================= */
+
+@media (max-width: 480px) {
+    .agri-chatbot {
+        bottom: 12px;
+        right: 12px;
+        left: 12px;
+    }
+
+    .agri-chat-panel {
+        width: 100%;
+        right: 0;
+        height: calc(100dvh - 24px);
+        max-height: calc(100dvh - 24px);
+        border-radius: 20px 20px 0 0;
+    }
+
+    .agri-chat-toggle {
+        position: fixed;
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .agri-chat-prompts {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .agri-chat-prompt {
+        flex-shrink: 0;
+    }
+}

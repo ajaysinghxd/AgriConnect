@@ -7,7 +7,8 @@ const cors = require("cors");
 require("dotenv").config();
 
 const Product = require("./models/product");
-
+const Equipment =
+  require("./models/Equipment");
 
 // =========================
 // ROUTES
@@ -21,6 +22,18 @@ const orderRoutes =
 
 const authRoutes =
   require("./routes/authRoutes");
+
+const equipmentRoutes =
+  require("./routes/equipmentRoutes");
+
+const rentalRoutes =
+  require("./routes/rentalRoutes");
+
+const paymentRoutes =
+  require("./routes/paymentRoutes");
+
+const aiRoutes =
+  require("./routes/aiRoutes");
 
 
 // =========================
@@ -60,6 +73,26 @@ app.use(
   authRoutes
 );
 
+app.use(
+  "/api/equipment",
+  equipmentRoutes
+);
+
+app.use(
+  "/api/rentals",
+  rentalRoutes
+);
+
+app.use(
+  "/api/payments",
+  paymentRoutes
+);
+
+app.use(
+  "/api/ai",
+  aiRoutes
+);
+
 
 // =========================
 // TEST ROUTE
@@ -91,6 +124,7 @@ mongoose.connect(
   // INSERT PRODUCTS ONLY FIRST TIME
 
   await insertProducts();
+  await insertEquipment();
 
   app.listen(process.env.PORT || 5000, () => {
 
@@ -235,6 +269,192 @@ async function insertProducts() {
 
     console.log(
       "Insert Products Error ❌"
+    );
+
+    console.log(error);
+
+  }
+
+}
+/* =========================
+   INSERT SAMPLE EQUIPMENT
+========================= */
+
+async function insertEquipment() {
+
+  try {
+
+    const existingEquipment =
+      await Equipment.countDocuments();
+
+    if (existingEquipment > 0) {
+
+      console.log(
+        "Equipment already exists ✅"
+      );
+
+      return;
+    }
+
+    await Equipment.insertMany([
+
+      {
+        name: "Mahindra Tractor 575",
+
+        description:
+          "Heavy-duty farming tractor suitable for large agricultural operations.",
+
+        category: "Tractor",
+
+        image:
+          "https://img.magnific.com/free-psd/powerful-green-john-deere-tractor-modern-agricultural-machinery_191095-82167.jpg?semt=ais_hybrid&w=740&q=80",
+
+        price: 780000,
+
+        rentalPricePerDay: 5500,
+
+        availability: true,
+
+        quantity: 3,
+
+        location: "Punjab",
+
+        ownerName: "AgriConnect Rentals",
+
+        ownerId:
+          new mongoose.Types.ObjectId(),
+
+        type: "both"
+      },
+
+      {
+        name: "Smart Irrigation System",
+
+        description:
+          "AI-enabled irrigation control system with moisture sensors.",
+
+        category: "Irrigation",
+
+        image:
+          "https://arborjet.com/wp-content/uploads/2024/07/smart-irrigation-month-scaled.jpeg",
+
+        price: 45000,
+
+        rentalPricePerDay: 900,
+
+        availability: true,
+
+        quantity: 8,
+
+        location: "Bangalore",
+
+        ownerName: "AgriTech Solutions",
+
+        ownerId:
+          new mongoose.Types.ObjectId(),
+
+        type: "buy"
+      },
+
+      {
+        name: "Drone Crop Sprayer",
+
+        description:
+          "Automated pesticide spraying drone for smart farming.",
+
+        category: "Drone",
+
+        image:
+          "https://images.squarespace-cdn.com/content/v1/66516db72ee91d03743a8d60/4c0019a0-1784-4725-abca-b78db1b9fda9/2-T25+Corn+%282%29.jpeg",
+
+        price: 220000,
+
+        rentalPricePerDay: 3200,
+
+        availability: true,
+
+        quantity: 4,
+
+        location: "Hyderabad",
+
+        ownerName: "SkyFarm Technologies",
+
+        ownerId:
+          new mongoose.Types.ObjectId(),
+
+        type: "both"
+      },
+
+      {
+        name: "Combine Harvester",
+
+        description:
+          "Industrial-grade harvesting machine for wheat and rice fields.",
+
+        category: "Harvester",
+
+        image:
+          "https://res.cloudinary.com/jerrick/image/upload/c_scale,f_jpg,q_auto/67cad4ddc108d5001d4167ae.jpg",
+
+        price: 1500000,
+
+        rentalPricePerDay: 8500,
+
+        availability: true,
+
+        quantity: 2,
+
+        location: "Haryana",
+
+        ownerName: "Harvest Corp",
+
+        ownerId:
+          new mongoose.Types.ObjectId(),
+
+        type: "rent"
+      },
+
+      {
+        name: "Mini Rotavator",
+
+        description:
+          "Compact soil preparation machine for small farms.",
+
+        category: "Rotavator",
+
+        image:
+          "https://toolz4industry.com/wp-content/uploads/2023/02/drizzle-nc-52t-tiller-1.jpg",
+
+        price: 95000,
+
+        rentalPricePerDay: 1200,
+
+        availability: true,
+
+        quantity: 5,
+
+        location: "Maharashtra",
+
+        ownerName: "Village Equipment Hub",
+
+        ownerId:
+          new mongoose.Types.ObjectId(),
+
+        type: "both"
+      }
+
+    ]);
+
+    console.log(
+      "Sample Equipment Inserted ✅"
+    );
+
+  }
+
+  catch (error) {
+
+    console.log(
+      "Insert Equipment Error ❌"
     );
 
     console.log(error);

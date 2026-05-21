@@ -14,8 +14,6 @@
         Buyer Dashboard
     </title>
 
-    <!-- FONT -->
-
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
@@ -32,21 +30,17 @@
         rel="stylesheet"
     />
 
-    <!-- CSS -->
-
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/buyer-dashboard.css" />
+    <link rel="stylesheet" href="css/chatbot.css" />
 
 </head>
 
 <body>
 
-    <!-- CURSOR -->
-
     <div class="cursor-glow"></div>
-
-    <!-- SIDEBAR -->
 
     <aside class="dashboard-sidebar">
 
@@ -62,39 +56,35 @@
 
         <nav class="dashboard-nav">
 
-            <a class="active" href="#">
+            <a class="active" href="buyer-dashboard.html">
                 Dashboard
             </a>
 
-            <a href="#">
-                Orders
+            <a href="#purchased-products">
+                Purchases
             </a>
 
-            <a href="#">
-                Wishlist
+            <a href="#rented-equipment">
+                Rentals
+            </a>
+
+            <a href="#recent-orders">
+                Orders
             </a>
 
             <a href="marketplace.html">
                 Marketplace
             </a>
 
-            <a href="#">
-                Recommendations
-            </a>
-
-            <a href="#">
-                Settings
+            <a href="equipment.html">
+                Equipment
             </a>
 
         </nav>
 
     </aside>
 
-    <!-- MAIN -->
-
-    <main class="dashboard-main">
-
-        <!-- TOP -->
+    <main class="dashboard-main buyer-main">
 
         <div class="dashboard-top">
 
@@ -108,6 +98,10 @@
                     Welcome Back
                 </h1>
 
+                <p class="buyer-subtitle">
+                    Track purchases, rentals, and order activity in one place.
+                </p>
+
             </div>
 
             <a
@@ -119,9 +113,7 @@
 
         </div>
 
-        <!-- LIVE STATS -->
-
-        <div class="stats-grid">
+        <div class="stats-grid buyer-stats">
 
             <div class="stat-card">
 
@@ -129,7 +121,7 @@
                     Total Orders
                 </span>
 
-                <h2 id="total-orders">
+                <h2 id="stat-total-orders">
                     0
                 </h2>
 
@@ -141,7 +133,7 @@
                     Total Spending
                 </span>
 
-                <h2 id="total-spending">
+                <h2 id="stat-total-spending">
                     ₹0
                 </h2>
 
@@ -150,10 +142,10 @@
             <div class="stat-card">
 
                 <span>
-                    Active Orders
+                    Products Purchased
                 </span>
 
-                <h2 id="active-orders">
+                <h2 id="stat-products-purchased">
                     0
                 </h2>
 
@@ -162,20 +154,81 @@
             <div class="stat-card">
 
                 <span>
-                    Saved Products
+                    Active Rentals
                 </span>
 
-                <h2>
-                    12
+                <h2 id="stat-active-rentals">
+                    0
                 </h2>
 
             </div>
 
         </div>
 
-        <!-- RECENT ORDERS -->
+        <section
+            class="dashboard-section reveal"
+            id="purchased-products"
+        >
 
-        <section class="dashboard-section">
+            <div class="section-title">
+
+                <h3>
+                    Purchased Products
+                </h3>
+
+                <p class="section-subtitle">
+                    Items you have ordered from the marketplace
+                </p>
+
+            </div>
+
+            <div
+                class="buyer-products-grid"
+                id="purchased-products-grid"
+            >
+
+                <p class="buyer-empty buyer-empty--grid">
+                    Loading your purchases...
+                </p>
+
+            </div>
+
+        </section>
+
+        <section
+            class="dashboard-section reveal"
+            id="rented-equipment"
+        >
+
+            <div class="section-title">
+
+                <h3>
+                    Rented Equipment
+                </h3>
+
+                <p class="section-subtitle">
+                    Your equipment rental bookings
+                </p>
+
+            </div>
+
+            <div
+                class="buyer-rentals-grid"
+                id="rented-equipment-grid"
+            >
+
+                <p class="buyer-empty buyer-empty--grid">
+                    Loading your rentals...
+                </p>
+
+            </div>
+
+        </section>
+
+        <section
+            class="dashboard-section reveal"
+            id="recent-orders"
+        >
 
             <div class="section-title">
 
@@ -183,13 +236,15 @@
                     Recent Orders
                 </h3>
 
+                <p class="section-subtitle">
+                    Latest marketplace purchases
+                </p>
+
             </div>
 
-            <div class="dashboard-table">
+            <div class="dashboard-table buyer-orders-table">
 
-                <!-- TABLE HEAD -->
-
-                <div class="table-row table-head">
+                <div class="table-row table-head buyer-table-head">
 
                     <span>
                         Product
@@ -200,73 +255,23 @@
                     </span>
 
                     <span>
-                        Status
+                        Qty
                     </span>
 
                     <span>
-                        Price
+                        Total
+                    </span>
+
+                    <span>
+                        Date
                     </span>
 
                 </div>
 
-                <!-- LIVE ORDERS -->
+                <div id="recent-orders-container">
 
-                <div id="orders-container">
-
-                    <!-- ORDERS LOAD DYNAMICALLY -->
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- MARKET INSIGHTS -->
-
-        <section class="dashboard-section market-insights">
-
-            <div class="section-title">
-
-                <h3>
-                    Market Insights
-                </h3>
-
-            </div>
-
-            <div class="insights-grid">
-
-                <div class="insight-card">
-
-                    <h4>
-                        Highest Demand
-                    </h4>
-
-                    <p id="top-product">
-                        Loading...
-                    </p>
-
-                </div>
-
-                <div class="insight-card">
-
-                    <h4>
-                        Total Marketplace Orders
-                    </h4>
-
-                    <p id="market-orders">
-                        0
-                    </p>
-
-                </div>
-
-                <div class="insight-card">
-
-                    <h4>
-                        Preferred Category
-                    </h4>
-
-                    <p id="top-category">
-                        Crops
+                    <p class="buyer-empty">
+                        Loading orders...
                     </p>
 
                 </div>
@@ -275,108 +280,14 @@
 
         </section>
 
-        <!-- LIVE ANALYTICS -->
-         <!-- LIVE ANALYTICS -->
+    </main>
 
-<section class="dashboard-section analytics-section">
-
-    <div class="section-title">
-
-        <h3>
-            Purchase Analytics
-        </h3>
-
-    </div>
-
-    <div class="chart-card">
-
-        <canvas id="ordersChart"></canvas>
-
-    </div>
-
-</section>
-
-
-
-
-        <!-- WEATHER SECTION -->
-
-<section class="dashboard-section weather-section">
-
-    <div class="section-title">
-
-        <h3>
-            Live Weather Insights
-        </h3>
-
-    </div>
-
-    <div class="weather-card">
-
-        <div class="weather-left">
-
-            <h2 id="weather-temp">
-                --
-            </h2>
-
-            <p id="weather-condition">
-                Loading weather...
-            </p>
-
-        </div>
-
-        <div class="weather-right">
-
-            <div class="weather-info">
-
-                <span>
-                    Humidity
-                </span>
-
-                <strong id="weather-humidity">
-                    --
-                </strong>
-
-            </div>
-
-            <div class="weather-info">
-
-                <span>
-                    Wind
-                </span>
-
-                <strong id="weather-wind">
-                    --
-                </strong>
-
-            </div>
-
-            <div class="weather-info">
-
-                <span>
-                    City
-                </span>
-
-                <strong id="weather-city">
-                    Bangalore
-                </strong>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- CHART JS -->
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- JS -->
-
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
     <script src="js/effects.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="js/protect.js"></script>
+    <script src="js/buyer-dashboard.js"></script>
+    <script src="js/chatbot.js"></script>
 
 </body>
 

@@ -1,0 +1,283 @@
+/* =========================
+   BUYER DASHBOARD EXTENSIONS
+   (extends dashboard.css)
+========================= */
+
+.buyer-main {
+    position: relative;
+}
+
+.buyer-subtitle {
+    margin-top: 12px;
+    max-width: 520px;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.section-subtitle {
+    margin-top: 8px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 14px;
+}
+
+/* =========================
+   PRODUCT & RENTAL GRIDS
+========================= */
+
+.buyer-products-grid,
+.buyer-rentals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.buyer-product-card,
+.buyer-rental-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.03)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    transition: all 0.35s ease;
+}
+
+.buyer-product-card:hover,
+.buyer-rental-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(96, 165, 250, 0.24);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.32);
+}
+
+.buyer-card-image {
+    width: 100%;
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.buyer-card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.buyer-card-body h4 {
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.buyer-card-meta {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 13px;
+}
+
+.buyer-card-price {
+    margin-top: auto;
+    padding-top: 8px;
+    color: #bfdbfe;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.buyer-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.status-badge--pending {
+    background: rgba(251, 191, 36, 0.14);
+    color: #fde68a;
+    border-color: rgba(251, 191, 36, 0.22);
+}
+
+.status-badge--approved,
+.status-badge--active {
+    background: rgba(59, 130, 246, 0.16);
+    color: #bfdbfe;
+    border-color: rgba(59, 130, 246, 0.24);
+}
+
+.status-badge--completed {
+    background: rgba(34, 197, 94, 0.14);
+    color: #bbf7d0;
+    border-color: rgba(34, 197, 94, 0.22);
+}
+
+.status-badge--cancelled {
+    background: rgba(239, 68, 68, 0.14);
+    color: #fecaca;
+    border-color: rgba(239, 68, 68, 0.22);
+}
+
+.status-badge--confirmed {
+    background: rgba(124, 58, 237, 0.14);
+    color: #ddd6fe;
+    border-color: rgba(124, 58, 237, 0.22);
+}
+
+/* =========================
+   ORDERS TABLE (5 COLS)
+========================= */
+
+.buyer-orders-table .buyer-table-head,
+.buyer-orders-table .table-row {
+    grid-template-columns: 2fr 1.2fr 0.6fr 0.8fr 1fr;
+}
+
+.buyer-order-product {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.buyer-order-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.buyer-order-name {
+    font-weight: 600;
+    color: white;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.buyer-empty {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 14px;
+    padding: 8px 4px;
+}
+
+.buyer-empty--grid {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 36px 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* =========================
+   BUYER ACCENT GLOW
+========================= */
+
+.buyer-main::before {
+    content: "";
+    position: fixed;
+    width: 480px;
+    height: 480px;
+    top: 18%;
+    right: -160px;
+    background: radial-gradient(
+        circle,
+        rgba(59, 130, 246, 0.14),
+        transparent 70%
+    );
+    filter: blur(80px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.buyer-stats .stat-card:nth-child(2)::before {
+    background: radial-gradient(
+        circle,
+        rgba(124, 58, 237, 0.2),
+        transparent 70%
+    );
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+    .buyer-products-grid,
+    .buyer-rentals-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .buyer-orders-table .buyer-table-head {
+        display: none;
+    }
+
+    .buyer-orders-table .table-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 20px;
+    }
+
+    .buyer-orders-table .table-row span {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .buyer-orders-table .table-row span::before {
+        content: attr(data-label);
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .buyer-order-product {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .buyer-order-product::before {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .buyer-products-grid,
+    .buyer-rentals-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .buyer-subtitle {
+        font-size: 14px;
+    }
+}

@@ -1279,3 +1279,622 @@ body::after{
     }
 
 }
+/* =========================================================
+   FINAL PREMIUM AI DASHBOARD ENHANCEMENTS
+========================================================= */
+
+/* =========================
+   CINEMATIC DASHBOARD GLOW
+========================= */
+
+.dashboard-main::before{
+
+    content: "";
+
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    top: 10%;
+    right: -180px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(34,197,94,0.14),
+            transparent 70%
+        );
+
+    filter: blur(80px);
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+/* =========================
+   PREMIUM AI CARD
+========================= */
+
+.ai-card{
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 28px;
+
+    padding: 36px;
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34,197,94,0.10),
+            rgba(20,184,166,0.08)
+        );
+
+    border:
+        1px solid rgba(34,197,94,0.14);
+
+    backdrop-filter: blur(24px);
+
+    position: relative;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.24);
+
+    transition:
+        all 0.4s ease;
+}
+
+/* AI CARD GLOW */
+
+.ai-card::before{
+
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    top: -100px;
+    right: -100px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(34,197,94,0.22),
+            transparent 70%
+        );
+
+    filter: blur(60px);
+}
+
+/* AI CARD HOVER */
+
+.ai-card:hover{
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,0.35),
+        0 0 30px rgba(34,197,94,0.08);
+}
+
+/* =========================
+   AI RESULT CARD
+========================= */
+
+.ai-result{
+
+    padding: 32px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16,185,129,0.16),
+            rgba(59,130,246,0.10)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+/* AI RESULT GLOW */
+
+.ai-result::before{
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    left: -80px;
+    bottom: -80px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(59,130,246,0.18),
+            transparent 70%
+        );
+
+    filter: blur(60px);
+}
+
+/* =========================
+   PREMIUM STAT CARD LIGHT
+========================= */
+
+.stat-card::after{
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.06),
+            transparent
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease;
+}
+
+.stat-card:hover::after{
+    opacity: 1;
+}
+
+/* =========================
+   PREMIUM CHART CARD
+========================= */
+
+.chart-card{
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 380px;
+
+    padding: 30px;
+
+    border-radius: 32px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(24px);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.25);
+
+    transition:
+        all 0.4s ease;
+}
+
+/* CHART HOVER */
+
+.chart-card:hover{
+
+    transform:
+        translateY(-6px);
+
+    border:
+        1px solid rgba(34,197,94,0.16);
+
+    box-shadow:
+        0 30px 55px rgba(0,0,0,0.35);
+}
+
+/* =========================
+   WEATHER CARD ENHANCEMENT
+========================= */
+
+.weather-card{
+
+    transition:
+        all 0.4s ease;
+}
+
+.weather-card:hover{
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,0.32);
+}
+
+/* =========================
+   FLOATING GLASS EFFECT
+========================= */
+
+.dashboard-section:hover{
+
+    transform:
+        translateY(-4px);
+
+    border:
+        1px solid rgba(34,197,94,0.12);
+
+    transition:
+        all 0.4s ease;
+}
+
+/* =========================
+   PREMIUM TABLE HOVER
+========================= */
+
+.table-row{
+
+    transition:
+        all 0.35s ease;
+}
+
+.table-row:hover{
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid rgba(34,197,94,0.12);
+
+    transform:
+        translateY(-3px);
+}
+
+/* =========================
+   BUTTON GLOW EFFECTS
+========================= */
+
+.dashboard-btn{
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.dashboard-btn::before{
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.25),
+            transparent
+        );
+
+    transition:
+        all 0.7s ease;
+}
+
+.dashboard-btn:hover::before{
+    left: 120%;
+}
+
+/* =========================
+   SCROLL REVEAL ANIMATION
+========================= */
+
+.reveal{
+
+    opacity: 0;
+
+    transform:
+        translateY(40px);
+
+    transition:
+        all 0.8s ease;
+}
+
+.reveal.active{
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+/* =========================
+   PREMIUM AI GLOW BORDER
+========================= */
+
+.ai-card,
+.chart-card,
+.weather-card,
+.dashboard-section{
+
+    position: relative;
+}
+
+.ai-card::after,
+.chart-card::after,
+.weather-card::after,
+.dashboard-section::after{
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    padding: 1px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34,197,94,0.18),
+            transparent,
+            rgba(59,130,246,0.12)
+        );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+
+    mask-composite: exclude;
+
+    pointer-events: none;
+
+    opacity: 0.4;
+}
+/* =========================================================
+   UPLOAD TABS
+========================================================= */
+
+.upload-tabs {
+
+    display: flex;
+
+    gap: 1rem;
+
+    margin-bottom: 2rem;
+}
+
+.upload-tab {
+
+    flex: 1;
+
+    padding: 1rem;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.upload-tab:hover {
+
+    background:
+        rgba(255,255,255,0.12);
+}
+
+.upload-tab.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c853,
+            #00e676
+        );
+
+    color: #04130a;
+}
+
+/* =========================================================
+   UPLOAD FORMS
+========================================================= */
+
+.upload-form {
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 1rem;
+
+    animation:
+        fadeForm 0.4s ease;
+}
+
+.active-form {
+
+    display: flex;
+}
+
+@keyframes fadeForm {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.upload-form textarea {
+
+    min-height: 120px;
+
+    resize: none;
+
+    padding: 1rem;
+
+    border-radius: 16px;
+
+    border: 1px solid
+        rgba(255,255,255,0.08);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    color: white;
+
+    font-size: 1rem;
+
+    font-family: inherit;
+
+    outline: none;
+}
+
+.upload-form textarea:focus {
+
+    border-color:
+        #00e676;
+}
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+.upload-form select {
+
+    padding: 1rem;
+
+    border-radius: 16px;
+
+    border: 1px solid
+        rgba(255,255,255,0.08);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    color: white;
+
+    font-size: 1rem;
+
+    outline: none;
+}
+
+.upload-form select option {
+
+    background: #10151f;
+
+    color: white;
+}
+
+/* =========================================================
+   EQUIPMENT TABLE
+========================================================= */
+
+#farmer-equipment-container {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .upload-tabs {
+
+        flex-direction: column;
+    }
+
+}
+/* =========================================================
+   FINAL EQUIPMENT TAB FIX
+========================================================= */
+
+#upload-product-form {
+
+    display: flex;
+}
+
+#upload-equipment-form {
+
+    display: none;
+}
+
+#upload-product-form.active-form {
+
+    display: flex !important;
+}
+
+#upload-equipment-form.active-form {
+
+    display: flex !important;
+}
+
+#upload-product-form:not(.active-form) {
+
+    display: none !important;
+}
+
+#upload-equipment-form:not(.active-form) {
+
+    display: none !important;
+}

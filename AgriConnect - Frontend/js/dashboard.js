@@ -1,8 +1,18 @@
-/* =========================
-   AUTH PROTECTION
-========================= */
+/* =========================================================
+   API URLS
+========================================================= */
 
-const currentUser =
+const PRODUCT_API =
+    "http://localhost:5000/api/products";
+
+const EQUIPMENT_API =
+    "http://localhost:5000/api/equipment";
+
+/* =========================================================
+   USER
+========================================================= */
+
+const user =
     JSON.parse(
         localStorage.getItem("user")
     );
@@ -10,349 +20,445 @@ const currentUser =
 const token =
     localStorage.getItem("token");
 
-if (!currentUser || !token) {
+if (!user || user.role !== "farmer") {
 
     window.location.href =
         "login.html";
 
 }
 
+/* =========================================================
+   WELCOME
+========================================================= */
 
-/* =========================
-   ROLE PROTECTION
-========================= */
+document.getElementById(
+    "welcome-user"
+).innerText =
+    `Welcome Back, ${user.name}`;
 
-const currentPage =
-    window.location.pathname;
+/* =========================================================
+   MODAL
+========================================================= */
 
-if (
-    currentPage.includes(
-        "buyer-dashboard"
-    ) &&
-    currentUser.role !== "buyer"
-) {
-
-    window.location.href =
-        "login.html";
-
-}
-
-if (
-    currentPage.includes(
-        "farmer-dashboard"
-    ) &&
-    currentUser.role !== "farmer"
-) {
-
-    window.location.href =
-        "login.html";
-
-}
-
-
-/* =========================
-   DASHBOARD NAV ACTIVE
-========================= */
-
-const dashboardLinks =
-    document.querySelectorAll(
-        '.dashboard-nav a'
-    );
-
-dashboardLinks.forEach((link) => {
-
-    link.addEventListener(
-        'click',
-        () => {
-
-            dashboardLinks.forEach((item) => {
-
-                item.classList.remove(
-                    'active'
-                );
-
-            });
-
-            link.classList.add(
-                'active'
-            );
-
-        }
-    );
-
-});
-
-
-/* =========================
-   STAT CARD HOVER EFFECT
-========================= */
-
-const statCards =
-    document.querySelectorAll(
-        '.stat-card'
-    );
-
-statCards.forEach((card) => {
-
-    card.addEventListener(
-        'mousemove',
-        (e) => {
-
-            const rect =
-                card.getBoundingClientRect();
-
-            const x =
-                e.clientX - rect.left;
-
-            const y =
-                e.clientY - rect.top;
-
-            const centerX =
-                rect.width / 2;
-
-            const centerY =
-                rect.height / 2;
-
-            const rotateX =
-                ((y - centerY) / 25);
-
-            const rotateY =
-                ((centerX - x) / 25);
-
-            card.style.transform = `
-                perspective(1000px)
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-                translateY(-6px)
-            `;
-
-        }
-    );
-
-    card.addEventListener(
-        'mouseleave',
-        () => {
-
-            card.style.transform = `
-                perspective(1000px)
-                rotateX(0deg)
-                rotateY(0deg)
-                translateY(0px)
-            `;
-
-        }
-    );
-
-});
-
-
-/* =========================
-   LIVE USER INFO
-========================= */
-
-const welcomeUser =
+const uploadModal =
     document.getElementById(
-        "welcome-user"
+        "upload-modal"
     );
 
-if (
-    welcomeUser &&
-    currentUser
-) {
-
-    welcomeUser.innerText =
-        `Welcome Back, ${currentUser.name}`;
-
-}
-
-
-/* =========================
-   LOGOUT BUTTON
-========================= */
-
-const sidebar =
-    document.querySelector(
-        ".dashboard-nav"
+const openUploadBtn =
+    document.getElementById(
+        "open-upload-modal"
     );
 
-if (sidebar) {
+openUploadBtn.addEventListener(
+    "click",
+    () => {
 
-    const logoutButton =
-        document.createElement("a");
-
-    logoutButton.innerText =
-        "Logout";
-
-    logoutButton.href = "#";
-
-    logoutButton.style.marginTop =
-        "20px";
-
-    logoutButton.addEventListener(
-        "click",
-        (e) => {
-
-            e.preventDefault();
-
-            localStorage.removeItem(
-                "token"
-            );
-
-            localStorage.removeItem(
-                "user"
-            );
-
-            window.location.href =
-                "login.html";
-
-        }
-    );
-
-    sidebar.appendChild(
-        logoutButton
-    );
-
-}
-
-
-/* =========================
-   PREMIUM TOAST SYSTEM
-========================= */
-
-function showToast(
-    message,
-    type = "info"
-) {
-
-    let toastContainer =
-        document.querySelector(
-            ".toast-container"
-        );
-
-    if (!toastContainer) {
-
-        toastContainer =
-            document.createElement(
-                "div"
-            );
-
-        toastContainer.className =
-            "toast-container";
-
-        document.body.appendChild(
-            toastContainer
-        );
+        uploadModal.style.display =
+            "flex";
 
     }
+);
 
-    const toast =
-        document.createElement("div");
+uploadModal.addEventListener(
+    "click",
+    (e) => {
 
-    toast.className =
-        `toast toast-${type}`;
+        if (
+            e.target === uploadModal
+        ) {
 
-    toast.innerHTML = `
+            uploadModal.style.display =
+                "none";
 
-        <span>
-            ${message}
-        </span>
+        }
 
-        <span class="toast-close">
-            ✕
-        </span>
+    }
+);
 
-    `;
+/* =========================================================
+   TABS
+========================================================= */
 
-    toastContainer.appendChild(
-        toast
+const productTab =
+    document.getElementById(
+        "product-tab"
     );
 
-    toast
-        .querySelector(".toast-close")
-        .addEventListener(
-            "click",
-            () => {
+const equipmentTab =
+    document.getElementById(
+        "equipment-tab"
+    );
 
-                toast.remove();
+const productForm =
+    document.getElementById(
+        "upload-product-form"
+    );
+
+const equipmentForm =
+    document.getElementById(
+        "upload-equipment-form"
+    );
+
+/* INITIAL STATE */
+
+productForm.classList.add(
+    "active-form"
+);
+
+equipmentForm.classList.remove(
+    "active-form"
+);
+
+/* PRODUCT TAB */
+
+productTab.onclick = () => {
+
+    productTab.classList.add(
+        "active"
+    );
+
+    equipmentTab.classList.remove(
+        "active"
+    );
+
+    productForm.classList.add(
+        "active-form"
+    );
+
+    equipmentForm.classList.remove(
+        "active-form"
+    );
+};
+
+/* EQUIPMENT TAB */
+
+equipmentTab.onclick = () => {
+
+    equipmentTab.classList.add(
+        "active"
+    );
+
+    productTab.classList.remove(
+        "active"
+    );
+
+    equipmentForm.classList.add(
+        "active-form"
+    );
+
+    productForm.classList.remove(
+        "active-form"
+    );
+};
+/* =========================================================
+   PRODUCT UPLOAD
+========================================================= */
+
+productForm.addEventListener(
+    "submit",
+    async (e) => {
+
+        e.preventDefault();
+
+        try {
+
+            const productData = {
+
+                name:
+                    document.getElementById(
+                        "product-name"
+                    ).value,
+
+                price:
+                    document.getElementById(
+                        "product-price"
+                    ).value,
+
+                quantity:
+                    document.getElementById(
+                        "product-quantity"
+                    ).value,
+
+                location:
+                    document.getElementById(
+                        "product-location"
+                    ).value,
+
+                category:
+                    document.getElementById(
+                        "product-category"
+                    ).value,
+
+                image:
+                    document.getElementById(
+                        "product-image"
+                    ).value,
+
+                farmerName:
+                    user.name,
+
+                farmerId:
+                    user._id
+
+            };
+
+            const response =
+                await fetch(
+                    PRODUCT_API,
+                    {
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${token}`
+                        },
+
+                        body:
+                            JSON.stringify(
+                                productData
+                            )
+                    }
+                );
+
+            const data =
+                await response.json();
+
+            if (!response.ok) {
+
+                console.log(data);
+
+                throw new Error(
+                    "Upload failed"
+                );
+
+            }
+
+            alert(
+                "Product uploaded successfully ✅"
+            );
+
+            productForm.reset();
+
+            uploadModal.style.display =
+                "none";
+
+            loadFarmerProducts();
+
+        }
+
+        catch (error) {
+
+            console.log(error);
+
+            alert(
+                "Product upload failed ❌"
+            );
+
+        }
+
+    }
+);
+
+/* =========================================================
+   EQUIPMENT UPLOAD
+========================================================= */
+
+equipmentForm.addEventListener(
+    "submit",
+    async (e) => {
+
+        e.preventDefault();
+
+        try {
+
+            const equipmentData = {
+
+                name:
+                    document.getElementById(
+                        "equipment-name"
+                    ).value,
+
+                description:
+                    document.getElementById(
+                        "equipment-description"
+                    ).value,
+
+                category:
+                    document.getElementById(
+                        "equipment-category"
+                    ).value,
+
+                image:
+                    document.getElementById(
+                        "equipment-image"
+                    ).value,
+
+                price:
+                    document.getElementById(
+                        "equipment-price"
+                    ).value,
+
+                rentalPricePerDay:
+                    document.getElementById(
+                        "equipment-rental-price"
+                    ).value,
+
+                quantity:
+                    document.getElementById(
+                        "equipment-quantity"
+                    ).value,
+
+                location:
+                    document.getElementById(
+                        "equipment-location"
+                    ).value,
+
+                ownerName:
+                    user.name,
+
+                ownerId:
+                    user._id,
+
+                type:
+                    document.getElementById(
+                        "equipment-type"
+                    ).value
+
+            };
+
+            const response =
+                await fetch(
+                    EQUIPMENT_API,
+                    {
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${token}`
+                        },
+
+                        body:
+                            JSON.stringify(
+                                equipmentData
+                            )
+                    }
+                );
+
+            const data =
+                await response.json();
+
+            if (!response.ok) {
+
+                console.log(data);
+
+                throw new Error(
+                    "Equipment upload failed"
+                );
+
+            }
+
+            alert(
+                "Equipment uploaded successfully 🚜"
+            );
+
+            equipmentForm.reset();
+
+            uploadModal.style.display =
+                "none";
+
+            loadFarmerEquipment();
+
+        }
+
+        catch (error) {
+
+            console.log(error);
+
+            alert(
+                "Equipment upload failed ❌"
+            );
+
+        }
+
+    }
+);
+
+/* =========================================================
+   LOAD PRODUCTS
+========================================================= */
+
+async function loadFarmerProducts() {
+
+    try {
+
+        const response =
+            await fetch(
+                PRODUCT_API
+            );
+
+        const products =
+            await response.json();
+
+        const farmerProducts =
+            products.filter(
+                (product) =>
+                    product.farmerId?.toString() ===
+                    user._id
+            );
+
+        const container =
+            document.getElementById(
+                "farmer-products-container"
+            );
+
+        container.innerHTML = "";
+
+        farmerProducts.forEach(
+            (product) => {
+
+                container.innerHTML += `
+
+                <div class="table-row">
+
+                    <span>${product.name}</span>
+
+                    <span>${product.category}</span>
+
+                    <span>${product.quantity}</span>
+
+                    <span>₹${product.price}</span>
+
+                    <span>
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteProduct('${product._id}')"
+                        >
+                            Delete
+                        </button>
+
+                    </span>
+
+                </div>
+
+                `;
 
             }
         );
 
-    setTimeout(() => {
-
-        toast.remove();
-
-    }, 4000);
-
-}
-
-
-/* =========================
-   LOAD BUYER ORDERS
-========================= */
-
-const ordersContainer =
-    document.getElementById(
-        "orders-container"
-    );
-
-async function loadOrders() {
-
-    if (!ordersContainer) return;
-
-    try {
-
-        const response =
-            await fetch(
-                "https://agriconnect-gor1.onrender.com/api/orders",
-                {
-                    headers: {
-                        "Authorization":
-                            `Bearer ${localStorage.getItem("token")}`
-                    }
-                }
-            );
-
-        const allOrders =
-            await response.json();
-
-        const orders =
-            allOrders.filter(
-                (order) =>
-
-                    order.buyerName ===
-                    currentUser.name
-            );
-
-        ordersContainer.innerHTML = "";
-
-        orders.forEach((order) => {
-
-            ordersContainer.innerHTML += `
-
-            <div class="table-row">
-
-                <span>
-                    ${order.productName}
-                </span>
-
-                <span>
-                    ${order.farmerName}
-                </span>
-
-                <span>
-                    Ordered
-                </span>
-
-                <span>
-                    ₹${order.price}
-                </span>
-
-            </div>
-
-            `;
-
-        });
+        document.getElementById(
+            "farmer-products"
+        ).innerText =
+            farmerProducts.length;
 
     }
 
@@ -364,285 +470,111 @@ async function loadOrders() {
 
 }
 
+/* =========================================================
+   LOAD EQUIPMENT
+========================================================= */
 
-/* =========================
-   BUYER ANALYTICS
-========================= */
-
-async function loadBuyerAnalytics() {
-
-    try {
-
-        const response =
-            await fetch(
-                "https://agriconnect-gor1.onrender.com/api/orders",
-                {
-                    headers: {
-                        "Authorization":
-                            `Bearer ${localStorage.getItem("token")}`
-                    }
-                }
-            );
-
-        const allOrders =
-            await response.json();
-
-        const orders =
-            allOrders.filter(
-                (order) =>
-
-                    order.buyerName ===
-                    currentUser.name
-            );
-
-        const totalOrders =
-            orders.length;
-
-        const totalSpending =
-            orders.reduce(
-                (sum, order) =>
-                    sum + Number(order.price),
-                0
-            );
-
-        const totalOrdersElement =
-            document.getElementById(
-                "total-orders"
-            );
-
-        if (totalOrdersElement) {
-
-            totalOrdersElement.innerText =
-                totalOrders;
-
-        }
-
-        const spendingElement =
-            document.getElementById(
-                "total-spending"
-            );
-
-        if (spendingElement) {
-
-            spendingElement.innerText =
-                `₹${totalSpending}`;
-
-        }
-
-        const activeOrdersElement =
-            document.getElementById(
-                "active-orders"
-            );
-
-        if (activeOrdersElement) {
-
-            activeOrdersElement.innerText =
-                totalOrders;
-
-        }
-
-        const marketOrders =
-            document.getElementById(
-                "market-orders"
-            );
-
-        if (marketOrders) {
-
-            marketOrders.innerText =
-                totalOrders;
-
-        }
-
-        const topProduct =
-            document.getElementById(
-                "top-product"
-            );
-
-        if (
-            topProduct &&
-            orders.length > 0
-        ) {
-
-            topProduct.innerText =
-                orders[0].productName;
-
-        }
-
-    }
-
-    catch (error) {
-
-        console.log(error);
-
-    }
-
-}
-
-
-/* =========================
-   FARMER PRODUCTS
-========================= */
-
-const farmerProductsContainer =
-    document.getElementById(
-        "farmer-products-container"
-    );
-
-async function loadFarmerProducts() {
-
-    if (!farmerProductsContainer) return;
+async function loadFarmerEquipment() {
 
     try {
 
         const response =
             await fetch(
-                "https://agriconnect-gor1.onrender.com/api/products"
+                EQUIPMENT_API
             );
 
-        const allProducts =
+        const equipment =
             await response.json();
 
-        const products =
-            allProducts.filter(
-                (product) =>
-
-                    product.farmerName ===
-                    currentUser.name
+        const farmerEquipment =
+            equipment.filter(
+                (item) =>
+                    item.ownerId?.toString() ===
+                    user._id
             );
 
-        farmerProductsContainer.innerHTML =
-            "";
-
-        let revenue = 0;
-
-        products.forEach((product) => {
-
-            revenue +=
-                Number(product.price);
-
-            farmerProductsContainer.innerHTML += `
-
-            <div class="table-row">
-
-                <span>
-                    ${product.name}
-                </span>
-
-                <span>
-                    ${product.category}
-                </span>
-
-                <span>
-                    ${product.quantity}
-                </span>
-
-                <span>
-                    ₹${product.price}
-                </span>
-
-                <span>
-
-                    <button
-                        class="delete-btn"
-                        onclick="deleteProduct('${product._id}')"
-                    >
-                        Delete
-                    </button>
-
-                </span>
-
-            </div>
-
-            `;
-
-        });
-
-        const productCount =
+        const container =
             document.getElementById(
-                "farmer-products"
+                "farmer-equipment-container"
             );
 
-        if (productCount) {
+        container.innerHTML = "";
 
-            productCount.innerText =
-                products.length;
+        farmerEquipment.forEach(
+            (item) => {
 
-        }
+                container.innerHTML += `
 
-        const revenueElement =
-            document.getElementById(
-                "farmer-revenue"
-            );
+                <div class="table-row">
 
-        if (revenueElement) {
+                    <span>${item.name}</span>
 
-            revenueElement.innerText =
-                `₹${revenue}`;
+                    <span>${item.type}</span>
 
-        }
+                    <span>
+                        ${item.availability
+                            ? "Available"
+                            : "Unavailable"}
+                    </span>
 
-        const customerElement =
-            document.getElementById(
-                "farmer-customers"
-            );
+                    <span>
+                        ₹${item.rentalPricePerDay}
+                    </span>
 
-        if (customerElement) {
+                    <span>
 
-            customerElement.innerText =
-                products.length * 3;
+                        <button
+                            class="delete-btn"
+                            onclick="deleteEquipment('${item._id}')"
+                        >
+                            Delete
+                        </button>
 
-        }
+                    </span>
 
-    }
+                </div>
 
-    catch (error) {
+                `;
 
-        console.log(error);
-
-    }
-
-}
-
-
-/* =========================
-   DELETE PRODUCT
-========================= */
-
-async function deleteProduct(id) {
-
-    const confirmDelete =
-        confirm(
-            "Delete this product?"
+            }
         );
 
-    if (!confirmDelete) return;
+        document.getElementById(
+            "farmer-equipment"
+        ).innerText =
+            farmerEquipment.length;
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
+}
+
+/* =========================================================
+   DELETE PRODUCT
+========================================================= */
+
+async function deleteProduct(
+    id
+) {
 
     try {
 
-        const response =
-            await fetch(
-                `https://agriconnect-gor1.onrender.com/api/products/${id}`,
-                {
-                    method: "DELETE",
+        await fetch(
+            `${PRODUCT_API}/${id}`,
+            {
+                method: "DELETE",
 
-                    headers: {
-                        "Authorization":
-                            `Bearer ${localStorage.getItem("token")}`
-                    }
+                headers: {
+
+                    "Authorization":
+                        `Bearer ${token}`
                 }
-            );
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Delete failed"
-            );
-
-        }
-
-        showToast(
-            "Product deleted successfully ✅",
-            "success"
+            }
         );
 
         loadFarmerProducts();
@@ -653,445 +585,34 @@ async function deleteProduct(id) {
 
         console.log(error);
 
-        showToast(
-            "Unable to delete product ❌",
-            "error"
-        );
-
     }
 
 }
 
+/* =========================================================
+   DELETE EQUIPMENT
+========================================================= */
 
-/* =========================
-   FARMER ORDERS
-========================= */
-
-async function loadFarmerOrders() {
-
-    const farmerOrders =
-        document.getElementById(
-            "farmer-orders"
-        );
-
-    if (!farmerOrders) return;
-
-    try {
-
-        const response =
-            await fetch(
-                "https://agriconnect-gor1.onrender.com/api/orders",
-                {
-                    headers: {
-                        "Authorization":
-                            `Bearer ${localStorage.getItem("token")}`
-                    }
-                }
-            );
-
-        const allOrders =
-            await response.json();
-
-        const orders =
-            allOrders.filter(
-                (order) =>
-
-                    order.farmerName ===
-                    currentUser.name
-            );
-
-        farmerOrders.innerText =
-            orders.length;
-
-    }
-
-    catch (error) {
-
-        console.log(error);
-
-    }
-
-}
-
-
-/* =========================
-   PRODUCT UPLOAD MODAL
-========================= */
-
-const uploadModal =
-    document.getElementById(
-        "upload-modal"
-    );
-
-const openUploadModal =
-    document.getElementById(
-        "open-upload-modal"
-    );
-
-if (
-    uploadModal &&
-    openUploadModal
+async function deleteEquipment(
+    id
 ) {
 
-    openUploadModal.addEventListener(
-        "click",
-        () => {
-
-            uploadModal.classList.add(
-                "active"
-            );
-
-        }
-    );
-
-    uploadModal.addEventListener(
-        "click",
-        (e) => {
-
-            if (
-                e.target === uploadModal
-            ) {
-
-                uploadModal.classList.remove(
-                    "active"
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================
-   PRODUCT UPLOAD
-========================= */
-
-const uploadForm =
-    document.getElementById(
-        "upload-product-form"
-    );
-
-if (uploadForm) {
-
-    uploadForm.addEventListener(
-        "submit",
-        async (e) => {
-
-            e.preventDefault();
-
-            try {
-
-                /* =========================
-                   IMAGE FILE
-                ========================= */
-
-                const imageFile =
-                    document.getElementById(
-                        "product-image"
-                    ).files[0];
-
-                if (!imageFile) {
-
-                    showToast(
-                        "Please select an image",
-                        "error"
-                    );
-
-                    return;
-                }
-
-                /* =========================
-                   CLOUDINARY UPLOAD
-                ========================= */
-
-                const cloudData =
-                    new FormData();
-
-                cloudData.append(
-                    "file",
-                    imageFile
-                );
-
-                cloudData.append(
-                    "upload_preset",
-                    "agriconnect"
-                );
-
-                const cloudResponse =
-                    await fetch(
-                        "https://api.cloudinary.com/v1_1/dcperleac/image/upload",
-                        {
-                            method: "POST",
-
-                            body: cloudData
-                        }
-                    );
-
-                const cloudResult =
-                    await cloudResponse.json();
-
-                if (!cloudResult.secure_url) {
-
-                    showToast(
-                        "Image upload failed",
-                        "error"
-                    );
-
-                    return;
-                }
-
-                const imageUrl =
-                    cloudResult.secure_url;
-
-                /* =========================
-                   PRODUCT DATA
-                ========================= */
-
-                const productData = {
-
-                    name:
-                        document.getElementById(
-                            "product-name"
-                        ).value,
-
-                    price:
-                        document.getElementById(
-                            "product-price"
-                        ).value,
-
-                    quantity:
-                        document.getElementById(
-                            "product-quantity"
-                        ).value,
-
-                    location:
-                        document.getElementById(
-                            "product-location"
-                        ).value,
-
-                    farmerName:
-                        currentUser.name,
-
-                    farmerId:
-                        currentUser._id,
-
-                    category:
-                        document.getElementById(
-                            "product-category"
-                        ).value,
-
-                    image:
-                        imageUrl
-                };
-
-                /* =========================
-                   SAVE PRODUCT
-                ========================= */
-
-                const response =
-                    await fetch(
-                        "https://agriconnect-gor1.onrender.com/api/products",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json",
-
-                                "Authorization":
-                                    `Bearer ${localStorage.getItem("token")}`
-                            },
-
-                            body: JSON.stringify(
-                                productData
-                            )
-                        }
-                    );
-
-                const data =
-                    await response.json();
-
-                if (!response.ok) {
-
-                    showToast(
-                        data.message ||
-                        "Upload failed",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-                showToast(
-                    "Product uploaded successfully ✅",
-                    "success"
-                );
-
-                uploadForm.reset();
-
-                uploadModal.classList.remove(
-                    "active"
-                );
-
-                loadFarmerProducts();
-
-            }
-
-            catch (error) {
-
-                console.log(error);
-
-                showToast(
-                    "Server error ❌",
-                    "error"
-                );
-
-            }
-
-        }
-    );
-
-}
-/* =========================
-   LIVE CHART ANALYTICS
-========================= */
-
-async function loadOrdersChart() {
-
-    const chartCanvas =
-        document.getElementById(
-            "ordersChart"
-        );
-
-    if (!chartCanvas) return;
-
     try {
 
-        const response =
-            await fetch(
-                "https://agriconnect-gor1.onrender.com/api/orders",
-                {
-                    headers: {
-                        "Authorization":
-                            `Bearer ${localStorage.getItem("token")}`
-                    }
-                }
-            );
-
-        const allOrders =
-            await response.json();
-
-        const orders =
-            allOrders.filter(
-                (order) =>
-
-                    order.buyerName ===
-                    currentUser.name
-            );
-
-        const labels =
-            orders.map(
-                (order, index) =>
-                    `Order ${index + 1}`
-            );
-
-        const prices =
-            orders.map(
-                (order) =>
-                    Number(order.price)
-            );
-
-        new Chart(
-            chartCanvas,
+        await fetch(
+            `${EQUIPMENT_API}/${id}`,
             {
-                type: "line",
+                method: "DELETE",
 
-                data: {
+                headers: {
 
-                    labels,
-
-                    datasets: [
-                        {
-
-                            label:
-                                "Order Spending",
-
-                            data: prices,
-
-                            borderColor:
-                                "#4ade80",
-
-                            backgroundColor:
-                                "rgba(74,222,128,0.15)",
-
-                            borderWidth: 3,
-
-                            tension: 0.4,
-
-                            fill: true,
-
-                            pointRadius: 5,
-
-                            pointBackgroundColor:
-                                "#ffffff"
-                        }
-                    ]
-                },
-
-                options: {
-
-                    responsive: true,
-
-                    plugins: {
-
-                        legend: {
-
-                            labels: {
-
-                                color:
-                                    "#ffffff"
-                            }
-                        }
-                    },
-
-                    scales: {
-
-                        x: {
-
-                            ticks: {
-
-                                color:
-                                    "#cbd5e1"
-                            },
-
-                            grid: {
-
-                                color:
-                                    "rgba(255,255,255,0.05)"
-                            }
-                        },
-
-                        y: {
-
-                            ticks: {
-
-                                color:
-                                    "#cbd5e1"
-                            },
-
-                            grid: {
-
-                                color:
-                                    "rgba(255,255,255,0.05)"
-                            }
-                        }
-                    }
+                    "Authorization":
+                        `Bearer ${token}`
                 }
             }
         );
+
+        loadFarmerEquipment();
 
     }
 
@@ -1102,182 +623,74 @@ async function loadOrdersChart() {
     }
 
 }
-/* =========================
-   LIVE WEATHER API
-========================= */
 
-async function loadWeather() {
+/* =========================================================
+   AI RECOMMENDATION
+========================================================= */
 
-    try {
+document.getElementById(
+    "predict-btn"
+).addEventListener(
+    "click",
+    () => {
 
-        const response =
-            await fetch(
-                "https://api.openweathermap.org/data/2.5/weather?q=Bangalore&units=metric&appid=98a8af6932e2428ec3d6241791433167"
-            );
+        const soil =
+            document.getElementById(
+                "soil-type"
+            ).value;
 
-        const data =
-            await response.json();
+        const season =
+            document.getElementById(
+                "season"
+            ).value;
 
         const temperature =
-            Math.round(
-                data.main.temp
-            );
+            document.getElementById(
+                "temperature"
+            ).value;
 
-        const humidity =
-            data.main.humidity;
+        let recommendation =
+            "Rice";
 
-        const wind =
-            data.wind.speed;
+        if (
+            soil === "black"
+        ) {
 
-        const condition =
-            data.weather[0].main;
-
-        document.getElementById(
-            "weather-temp"
-        ).innerText =
-            `${temperature}°C`;
-
-        document.getElementById(
-            "weather-condition"
-        ).innerText =
-            condition;
-
-        document.getElementById(
-            "weather-humidity"
-        ).innerText =
-            `${humidity}%`;
-
-        document.getElementById(
-            "weather-wind"
-        ).innerText =
-            `${wind} km/h`;
-
-    }
-
-    catch (error) {
-
-        console.log(error);
-
-    }
-
-}
-/* =========================
-   AI CROP RECOMMENDATION
-========================= */
-
-const predictBtn =
-    document.getElementById(
-        "predict-btn"
-    );
-
-if (predictBtn) {
-
-    predictBtn.addEventListener(
-        "click",
-        () => {
-
-            const soil =
-                document.getElementById(
-                    "soil-type"
-                ).value;
-
-            const season =
-                document.getElementById(
-                    "season"
-                ).value;
-
-            const temperature =
-                Number(
-                    document.getElementById(
-                        "temperature"
-                    ).value
-                );
-
-            const result =
-                document.getElementById(
-                    "crop-result"
-                );
-
-            if (
-                !soil ||
-                !season ||
-                !temperature
-            ) {
-
-                result.innerText =
-                    "Please fill all fields.";
-
-                return;
-            }
-
-            let recommendation =
-                "";
-
-            if (
-                soil === "black" &&
-                season === "monsoon"
-            ) {
-
-                recommendation =
-                    "Recommended Crops: Cotton, Soybean, Jowar";
-
-            }
-
-            else if (
-                soil === "red" &&
-                season === "summer"
-            ) {
-
-                recommendation =
-                    "Recommended Crops: Groundnut, Millet, Pulses";
-
-            }
-
-            else if (
-                soil === "clay" &&
-                temperature < 25
-            ) {
-
-                recommendation =
-                    "Recommended Crops: Rice, Broccoli, Cabbage";
-
-            }
-
-            else if (
-                soil === "sandy"
-            ) {
-
-                recommendation =
-                    "Recommended Crops: Watermelon, Coconut, Groundnut";
-
-            }
-
-            else {
-
-                recommendation =
-                    "Recommended Crops: Tomato, Onion, Maize";
-
-            }
-
-            result.innerText =
-                recommendation;
+            recommendation =
+                "Cotton";
 
         }
-    );
 
-}
-/* =========================
+        if (
+            season === "winter"
+        ) {
+
+            recommendation =
+                "Wheat";
+
+        }
+
+        if (
+            temperature > 35
+        ) {
+
+            recommendation =
+                "Millets";
+
+        }
+
+        document.getElementById(
+            "crop-result"
+        ).innerText =
+            `Recommended Crop: ${recommendation}`;
+
+    }
+);
+
+/* =========================================================
    INITIALIZE
-========================= */
-
-loadOrders();
-
-loadBuyerAnalytics();
+========================================================= */
 
 loadFarmerProducts();
 
-loadFarmerOrders();
-
-loadOrdersChart();
-
-loadWeather();
+loadFarmerEquipment();

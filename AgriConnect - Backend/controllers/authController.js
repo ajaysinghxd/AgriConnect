@@ -35,6 +35,7 @@ const registerUser = async (req, res) => {
             password,
             role
         } = req.body;
+        console.log(req.body);
 
         const existingUser = await User.findOne({ email });
 

@@ -1,65 +1,72 @@
-:root{
+:root {
 
-    /* BACKGROUNDS */
+  /* ========= COLORS ========= */
 
-    --bg-primary:
-        #050816;
+  --bg-primary: #071018;
+  --bg-secondary: #0d1722;
+  --bg-card: rgba(15, 23, 35, 0.72);
 
-    --bg-secondary:
-        #0a1022;
+  --accent-primary: #00ff88;
+  --accent-secondary: #00c96b;
 
-    --bg-card:
-        rgba(255,255,255,0.04);
+  --text-primary: #ffffff;
+  --text-secondary: #a8b3c7;
+  --text-muted: #6f7d92;
 
-    /* PRIMARY COLORS */
+  --border-light: rgba(255,255,255,0.08);
+  --border-hover: rgba(0,255,136,0.25);
 
-    --primary-green:
-        #166534;
+  --danger: #ff5c5c;
+  --warning: #ffb84d;
+  --success: #00d26a;
 
-    --primary-light:
-        #22c55e;
+  /* ========= GLASS ========= */
 
-    --teal:
-        #0f766e;
+  --glass-bg: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
 
-    --soft-green:
-        #86efac;
+  --blur-lg: blur(20px);
 
-    /* TEXT */
+  /* ========= SHADOWS ========= */
 
-    --text-primary:
-        #ffffff;
+  --shadow-sm:
+    0 4px 12px rgba(0,0,0,0.18);
 
-    --text-secondary:
-        rgba(255,255,255,0.72);
+  --shadow-md:
+    0 8px 24px rgba(0,0,0,0.28);
 
-    /* BORDERS */
+  --shadow-lg:
+    0 20px 45px rgba(0,0,0,0.45);
 
-    --border-light:
-        rgba(255,255,255,0.08);
+  --glow-green:
+    0 0 24px rgba(0,255,136,0.18);
 
-    /* GRADIENTS */
+  /* ========= RADIUS ========= */
 
-    --gradient-primary:
-        linear-gradient(
-            135deg,
-            #166534,
-            #0f766e
-        );
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
 
-    /* SHADOWS */
+  /* ========= TRANSITIONS ========= */
 
-    --shadow-green:
-        0 0 40px rgba(22,101,52,0.18);
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s ease;
+  --transition-slow: 0.5s ease;
 
-    /* RADIUS */
+  /* ========= TYPOGRAPHY ========= */
 
-    --radius-lg:
-        32px;
+  --font-main: 'Inter', sans-serif;
 
-    /* TRANSITIONS */
+  --text-xs: 0.75rem;
+  --text-sm: 0.9rem;
+  --text-md: 1rem;
+  --text-lg: 1.2rem;
+  --text-xl: 2rem;
+  --text-2xl: 3.5rem;
 
-    --transition:
-        all 0.4s ease;
+  /* ========= SPACING ========= */
+
+  --section-padding: 100px;
+  --container-width: 1280px;
 
 }

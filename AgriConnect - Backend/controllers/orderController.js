@@ -1,67 +1,115 @@
-const Order = require("../models/order");
+const Order =
+    require("../models/order");
 
-// GET ORDERS
+/* =========================
+   GET ORDERS
+========================= */
 
-const getOrders = async (req, res) => {
+const getOrders =
+    async (req, res) => {
 
-  try {
+    try {
 
-    const orders = await Order.find();
+        const orders =
+            await Order.find()
+            .sort({
+                createdAt: -1
+            });
 
-    res.json(orders);
+        res.json(orders);
 
-  } catch (error) {
+    }
 
-    res.status(500).json({
-      message: error.message
-    });
-  }
+    catch (error) {
+
+        res.status(500).json({
+            message:
+                error.message
+        });
+
+    }
+
 };
 
-// CREATE ORDER
+/* =========================
+   CREATE ORDER
+========================= */
 
-const createOrder = async (req, res) => {
+const createOrder =
+    async (req, res) => {
 
-  try {
+    try {
 
-    console.log("Incoming Order:", req.body);
+        console.log(
+            "Incoming Order:",
+            req.body
+        );
 
-    const newOrder = new Order({
+        const newOrder =
+            new Order({
 
-      productName: req.body.productName,
+                productName:
+                    req.body.productName,
 
-      price: req.body.price,
+                price:
+                    req.body.price,
 
-      quantity: req.body.quantity,
+                quantity:
+                    req.body.quantity,
 
-      buyerName: req.body.buyerName,
+                buyerName:
+                    req.body.buyerName,
 
-      farmerName: req.body.farmerName,
+                buyerId:
+                    req.body.buyerId,
 
-      location: req.body.location,
+                farmerName:
+                    req.body.farmerName,
 
-      image: req.body.image
-    });
+                farmerId:
+                    req.body.farmerId,
 
-    await newOrder.save();
+                location:
+                    req.body.location,
 
-    res.status(201).json({
-      success: true,
-      message: "Order placed",
-      order: newOrder
-    });
+                image:
+                    req.body.image
 
-  } catch (error) {
+            });
 
-    console.log(error);
+        await newOrder.save();
 
-    res.status(500).json({
-      message: error.message
-    });
-  }
+        res.status(201).json({
+
+            success: true,
+
+            message:
+                "Order placed successfully",
+
+            order:
+                newOrder
+
+        });
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            message:
+                error.message
+        });
+
+    }
+
 };
 
 module.exports = {
-  getOrders,
-  createOrder
+
+    getOrders,
+
+    createOrder
+
 };

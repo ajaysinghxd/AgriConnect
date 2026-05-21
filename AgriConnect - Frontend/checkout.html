@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>
+        Checkout — AgriConnect
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    />
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/checkout.css" />
+
+</head>
+
+<body class="checkout-page">
+
+    <div class="cursor-glow"></div>
+
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <div
+        class="checkout-loader"
+        id="checkout-loader"
+        hidden
+    >
+
+        <div class="checkout-loader-card">
+
+            <div class="checkout-spinner"></div>
+
+            <p>
+                Processing your order...
+            </p>
+
+        </div>
+
+    </div>
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                ◉
+            </span>
+
+            AgriConnect
+
+        </div>
+
+        <nav class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="marketplace.html">
+                Marketplace
+            </a>
+
+            <a href="cart.html">
+                Cart
+            </a>
+
+            <a href="checkout.html" class="active">
+                Checkout
+            </a>
+
+        </nav>
+
+        <div class="nav-buttons">
+
+            <a
+                href="cart.html"
+                class="btn-secondary"
+            >
+                Back to Cart
+            </a>
+
+        </div>
+
+    </header>
+
+    <main class="checkout-main">
+
+        <div
+            class="checkout-flow"
+            id="checkout-flow"
+        >
+
+            <div class="checkout-hero">
+
+                <span class="dashboard-tag">
+                    SECURE CHECKOUT
+                </span>
+
+                <h1>
+                    Complete Your Order
+                </h1>
+
+                <p>
+                    Enter delivery details and confirm payment to place your order.
+                </p>
+
+            </div>
+
+            <form
+                class="checkout-layout"
+                id="checkout-form"
+            >
+
+                <div class="checkout-forms">
+
+                    <section class="dashboard-section checkout-panel">
+
+                        <h3>
+                            Buyer Details
+                        </h3>
+
+                        <div class="checkout-form-grid">
+
+                            <div class="form-group">
+
+                                <label for="buyer-name">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="buyer-name"
+                                    name="buyerName"
+                                    placeholder="Your full name"
+                                    required
+                                />
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="buyer-email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="buyer-email"
+                                    name="buyerEmail"
+                                    placeholder="you@email.com"
+                                    required
+                                />
+
+                            </div>
+
+                            <div class="form-group form-group--full">
+
+                                <label for="buyer-phone">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="buyer-phone"
+                                    name="buyerPhone"
+                                    placeholder="+91 98765 43210"
+                                    required
+                                />
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="dashboard-section checkout-panel">
+
+                        <h3>
+                            Delivery Address
+                        </h3>
+
+                        <div class="checkout-form-grid">
+
+                            <div class="form-group form-group--full">
+
+                                <label for="address-line1">
+                                    Address Line 1
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="address-line1"
+                                    name="addressLine1"
+                                    placeholder="House no., street, village"
+                                    required
+                                />
+
+                            </div>
+
+                            <div class="form-group form-group--full">
+
+                                <label for="address-line2">
+                                    Address Line 2
+                                    <span class="optional">
+                                        (optional)
+                                    </span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="address-line2"
+                                    name="addressLine2"
+                                    placeholder="Landmark, area"
+                                />
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="city">
+                                    City
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="city"
+                                    name="city"
+                                    placeholder="City"
+                                    required
+                                />
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="state">
+                                    State
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="state"
+                                    name="state"
+                                    placeholder="State"
+                                    required
+                                />
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="pincode">
+                                    Pincode
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="pincode"
+                                    name="pincode"
+                                    placeholder="560001"
+                                    pattern="[0-9]{6}"
+                                    required
+                                />
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="dashboard-section checkout-panel">
+
+                        <h3>
+                            Payment Method
+                        </h3>
+
+                        <div class="payment-methods payment-methods--dual">
+
+                            <label class="payment-option">
+
+                                <input
+                                    type="radio"
+                                    name="paymentMethod"
+                                    value="razorpay"
+                                    checked
+                                />
+
+                                <span class="payment-card">
+
+                                    <span class="payment-icon">
+                                        💳
+                                    </span>
+
+                                    <span>
+                                        Razorpay
+                                    </span>
+
+                                    <small>
+                                        UPI, Card, Netbanking
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+                            <label class="payment-option">
+
+                                <input
+                                    type="radio"
+                                    name="paymentMethod"
+                                    value="cod"
+                                />
+
+                                <span class="payment-card">
+
+                                    <span class="payment-icon">
+                                        💵
+                                    </span>
+
+                                    <span>
+                                        Cash on Delivery
+                                    </span>
+
+                                    <small>
+                                        Pay when delivered
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                        <p class="payment-note">
+                            Online payments are secured via Razorpay. COD orders are confirmed without online payment.
+                        </p>
+
+                    </section>
+
+                </div>
+
+                <aside class="checkout-sidebar">
+
+                    <section class="dashboard-section checkout-summary-panel">
+
+                        <h3>
+                            Order Summary
+                        </h3>
+
+                        <ul
+                            class="checkout-items"
+                            id="checkout-items"
+                        ></ul>
+
+                        <div class="checkout-totals">
+
+                            <div class="checkout-total-row">
+
+                                <span>
+                                    Subtotal
+                                </span>
+
+                                <strong id="checkout-subtotal">
+                                    ₹0
+                                </strong>
+
+                            </div>
+
+                            <div class="checkout-total-row">
+
+                                <span>
+                                    Delivery Charges
+                                </span>
+
+                                <strong id="checkout-delivery">
+                                    ₹0
+                                </strong>
+
+                            </div>
+
+                            <div class="checkout-total-row checkout-total-row--grand">
+
+                                <span>
+                                    Total Amount
+                                </span>
+
+                                <strong id="checkout-total">
+                                    ₹0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="dashboard-btn checkout-submit-btn"
+                            id="checkout-submit-btn"
+                        >
+                            Place Order
+                        </button>
+
+                        <a
+                            href="cart.html"
+                            class="checkout-back-link"
+                        >
+                            ← Edit cart
+                        </a>
+
+                    </section>
+
+                </aside>
+
+            </form>
+
+        </div>
+
+        <div
+            class="checkout-failure"
+            id="checkout-failure"
+            hidden
+        >
+
+            <div class="checkout-failure-card dashboard-section">
+
+                <div class="failure-icon-wrap">
+
+                    <span class="failure-icon">
+                        ✕
+                    </span>
+
+                </div>
+
+                <span class="dashboard-tag checkout-tag-fail">
+                    PAYMENT FAILED
+                </span>
+
+                <h2>
+                    Payment Could Not Be Completed
+                </h2>
+
+                <p id="failure-message">
+                    Something went wrong with your payment.
+                </p>
+
+                <div class="success-actions">
+
+                    <button
+                        type="button"
+                        class="dashboard-btn"
+                        id="retry-payment-btn"
+                    >
+                        Try Again
+                    </button>
+
+                    <a
+                        href="cart.html"
+                        class="btn-secondary checkout-btn-outline"
+                    >
+                        Back to Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+            class="checkout-success"
+            id="checkout-success"
+            hidden
+        >
+
+            <div class="checkout-success-card dashboard-section">
+
+                <div class="success-icon-wrap">
+
+                    <span class="success-icon">
+                        ✓
+                    </span>
+
+                </div>
+
+                <span class="dashboard-tag">
+                    ORDER CONFIRMED
+                </span>
+
+                <h2>
+                    Thank You for Your Order!
+                </h2>
+
+                <p id="success-message">
+                    Your order has been placed successfully.
+                </p>
+
+                <p
+                    class="success-payment"
+                    id="success-payment"
+                ></p>
+
+                <p
+                    class="success-payment-id"
+                    id="success-payment-id"
+                ></p>
+
+                <p
+                    class="success-address"
+                    id="success-address"
+                ></p>
+
+                <div class="success-actions">
+
+                    <a
+                        href="buyer-dashboard.html"
+                        class="dashboard-btn"
+                        id="success-dashboard-btn"
+                    >
+                        Go to Dashboard
+                    </a>
+
+                    <a
+                        href="marketplace.html"
+                        class="btn-secondary checkout-btn-outline"
+                    >
+                        Continue Shopping
+                    </a>
+
+                </div>
+
+                <p class="success-redirect-note">
+                    Redirecting to your dashboard shortly...
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/checkout-service.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/checkout.js"></script>
+
+</body>
+
+</html>

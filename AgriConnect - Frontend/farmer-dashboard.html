@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="css/variables.css" />
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/chatbot.css" />
 
 </head>
 
@@ -68,6 +69,10 @@
 
             <a href="#">
                 Products
+            </a>
+
+            <a href="#">
+                Equipment
             </a>
 
             <a href="#">
@@ -114,12 +119,12 @@
                 class="dashboard-btn"
                 id="open-upload-modal"
             >
-                + Upload Product
+                + Upload Listing
             </button>
 
         </div>
 
-        <!-- LIVE STATS -->
+        <!-- STATS -->
 
         <div class="stats-grid">
 
@@ -138,10 +143,10 @@
             <div class="stat-card">
 
                 <span>
-                    Total Orders
+                    Total Equipment
                 </span>
 
-                <h2 id="farmer-orders">
+                <h2 id="farmer-equipment">
                     0
                 </h2>
 
@@ -173,21 +178,22 @@
 
         </div>
 
-        <!-- INVENTORY -->
+        <!-- PRODUCT INVENTORY -->
 
-        <section class="dashboard-section">
+        <section
+    class="dashboard-section"
+    id="products-section"
+>
 
             <div class="section-title">
 
                 <h3>
-                    Inventory Management
+                    Product Inventory
                 </h3>
 
             </div>
 
             <div class="dashboard-table">
-
-                <!-- TABLE HEAD -->
 
                 <div class="table-row table-head">
 
@@ -213,8 +219,6 @@
 
                 </div>
 
-                <!-- LIVE PRODUCTS -->
-
                 <div id="farmer-products-container">
 
                 </div>
@@ -223,7 +227,56 @@
 
         </section>
 
-        <!-- AI CROP RECOMMENDATION -->
+        <!-- EQUIPMENT INVENTORY -->
+
+        <section
+    class="dashboard-section"
+    id="equipment-section"
+>
+
+            <div class="section-title">
+
+                <h3>
+                    Equipment Inventory
+                </h3>
+
+            </div>
+
+            <div class="dashboard-table">
+
+                <div class="table-row table-head">
+
+                    <span>
+                        Equipment
+                    </span>
+
+                    <span>
+                        Type
+                    </span>
+
+                    <span>
+                        Availability
+                    </span>
+
+                    <span>
+                        Rental Price
+                    </span>
+
+                    <span>
+                        Actions
+                    </span>
+
+                </div>
+
+                <div id="farmer-equipment-container">
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- AI SECTION -->
 
         <section class="dashboard-section ai-section">
 
@@ -290,6 +343,7 @@
                     />
 
                     <button
+                        type="button"
                         class="dashboard-btn"
                         id="predict-btn"
                     >
@@ -313,7 +367,7 @@
     </main>
 
     <!-- =========================
-         PRODUCT UPLOAD MODAL
+         UPLOAD MODAL
     ========================== -->
 
     <div
@@ -324,10 +378,37 @@
         <div class="upload-modal-content">
 
             <h2>
-                Upload Product
+                Upload Marketplace Listing
             </h2>
 
-            <form id="upload-product-form">
+            <!-- TABS -->
+
+            <div class="upload-tabs">
+
+                <button
+                    type="button"
+                    class="upload-tab active"
+                    id="product-tab"
+                >
+                    Product
+                </button>
+
+                <button
+                    type="button"
+                    class="upload-tab"
+                    id="equipment-tab"
+                >
+                    Equipment
+                </button>
+
+            </div>
+
+            <!-- PRODUCT FORM -->
+
+            <form
+                id="upload-product-form"
+                class="upload-form active-form"
+            >
 
                 <input
                     type="text"
@@ -367,7 +448,7 @@
                 <input
                     type="text"
                     id="product-image"
-                    placeholder="Image URL"
+                    placeholder="Paste Product Image URL"
                     required
                 />
 
@@ -380,14 +461,108 @@
 
             </form>
 
+            <!-- EQUIPMENT FORM -->
+
+            <form
+                id="upload-equipment-form"
+                class="upload-form"
+            >
+
+                <input
+                    type="text"
+                    id="equipment-name"
+                    placeholder="Equipment Name"
+                    required
+                />
+
+                <textarea
+                    id="equipment-description"
+                    placeholder="Equipment Description"
+                    required
+                ></textarea>
+
+                <input
+                    type="text"
+                    id="equipment-category"
+                    placeholder="Category"
+                    required
+                />
+
+                <input
+                    type="number"
+                    id="equipment-price"
+                    placeholder="Purchase Price"
+                    required
+                />
+
+                <input
+                    type="number"
+                    id="equipment-rental-price"
+                    placeholder="Rental Price Per Day"
+                    required
+                />
+
+                <input
+                    type="number"
+                    id="equipment-quantity"
+                    placeholder="Quantity"
+                    required
+                />
+
+                <input
+                    type="text"
+                    id="equipment-location"
+                    placeholder="Location"
+                    required
+                />
+
+                <select
+                    id="equipment-type"
+                    required
+                >
+
+                    <option value="buy">
+                        Buy
+                    </option>
+
+                    <option value="rent">
+                        Rent
+                    </option>
+
+                    <option value="both">
+                        Buy & Rent
+                    </option>
+
+                </select>
+
+                <input
+                    type="text"
+                    id="equipment-image"
+                    placeholder="Paste Equipment Image URL"
+                    required
+                />
+
+                <button
+                    type="submit"
+                    class="dashboard-btn"
+                >
+                    Upload Equipment
+                </button>
+
+            </form>
+
         </div>
 
     </div>
 
     <!-- JS -->
 
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
     <script src="js/effects.js"></script>
+    <script src="js/protect.js"></script>
     <script src="js/dashboard.js"></script>
+    <script src="js/chatbot.js"></script>
 
 </body>
 

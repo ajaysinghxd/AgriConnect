@@ -34,9 +34,9 @@
 
     <!-- CSS -->
 
-    <link rel="stylesheet" href="css/variables.css" />
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/auth.css" />
+    <link rel="stylesheet" href="./css/variables.css" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/auth.css" />
 
 </head>
 
@@ -57,7 +57,7 @@
 
     <section class="auth-wrapper">
 
-        <!-- LEFT -->
+        <!-- LEFT SIDE -->
 
         <div class="auth-left">
 
@@ -71,13 +71,14 @@
 
             <p>
                 Join the next-generation digital agriculture
-                ecosystem designed for smart farming and
-                intelligent marketplace experiences.
+                ecosystem designed for smart farming,
+                AI-powered insights and intelligent
+                marketplace experiences.
             </p>
 
         </div>
 
-        <!-- RIGHT -->
+        <!-- RIGHT SIDE -->
 
         <div class="auth-right">
 
@@ -89,9 +90,12 @@
 
                 <!-- FORM -->
 
-                <form class="signup-form">
+                <form
+                    id="signupForm"
+                    class="signup-form"
+                >
 
-                    <!-- NAME -->
+                    <!-- FULL NAME -->
 
                     <div class="input-group">
 
@@ -101,7 +105,7 @@
 
                         <input
                             type="text"
-                            id="signup-name"
+                            id="name"
                             placeholder="Enter full name"
                             required
                         />
@@ -118,8 +122,8 @@
 
                         <input
                             type="email"
-                            id="signup-email"
-                            placeholder="Enter email"
+                            id="email"
+                            placeholder="Enter email address"
                             required
                         />
 
@@ -135,7 +139,7 @@
 
                         <input
                             type="password"
-                            id="signup-password"
+                            id="password"
                             placeholder="Create password"
                             required
                         />
@@ -151,9 +155,13 @@
                         </label>
 
                         <select
-                            id="signup-role"
+                            id="role"
                             required
                         >
+
+                            <option value="">
+                                Choose Role
+                            </option>
 
                             <option value="farmer">
                                 Farmer
@@ -198,8 +206,8 @@
 
     <!-- JS -->
 
-    <script src="js/effects.js"></script>
-    <script src="js/auth.js"></script>
+    <script src="./js/effects.js"></script>
+    <script src="./js/auth.js"></script>
 
 </body>
 

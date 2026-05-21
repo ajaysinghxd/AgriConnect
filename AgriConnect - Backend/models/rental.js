@@ -1,30 +1,28 @@
 const mongoose = require("mongoose");
 
-const orderSchema =
+const rentalSchema =
     new mongoose.Schema(
     {
 
-        productName: {
+        equipmentName: {
             type: String,
             required: true
         },
 
-        price: {
-            type: Number,
+        equipmentId: {
+            type: mongoose.Schema.Types.ObjectId,
+
+            ref: "Equipment",
+
             required: true
         },
 
-        quantity: {
-            type: Number,
-            required: true
-        },
-
-        buyerName: {
+        renterName: {
             type: String,
             required: true
         },
 
-        buyerId: {
+        renterId: {
             type: mongoose.Schema.Types.ObjectId,
 
             ref: "User",
@@ -32,15 +30,42 @@ const orderSchema =
             required: true
         },
 
-        farmerName: {
+        ownerName: {
             type: String,
             required: true
         },
 
-        farmerId: {
+        ownerId: {
             type: mongoose.Schema.Types.ObjectId,
 
-            ref: "User"
+            ref: "User",
+
+            required: true
+        },
+
+        rentalPricePerDay: {
+            type: Number,
+            required: true
+        },
+
+        totalDays: {
+            type: Number,
+            required: true
+        },
+
+        totalAmount: {
+            type: Number,
+            required: true
+        },
+
+        startDate: {
+            type: Date,
+            required: true
+        },
+
+        endDate: {
+            type: Date,
+            required: true
         },
 
         location: {
@@ -51,6 +76,20 @@ const orderSchema =
         image: {
             type: String,
             required: true
+        },
+
+        status: {
+            type: String,
+
+            enum: [
+                "pending",
+                "approved",
+                "active",
+                "completed",
+                "cancelled"
+            ],
+
+            default: "pending"
         },
 
         paymentId: {
@@ -77,7 +116,8 @@ const orderSchema =
 );
 
 module.exports =
+    mongoose.models.Rental ||
     mongoose.model(
-        "Order",
-        orderSchema
+        "Rental",
+        rentalSchema
     );

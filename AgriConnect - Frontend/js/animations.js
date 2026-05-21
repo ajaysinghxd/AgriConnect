@@ -1,26 +1,37 @@
-const reveals = document.querySelectorAll('.reveal');
+/* =========================================================
+   NAVBAR SCROLL EFFECT
+========================================================= */
 
-function revealElements(){
+const navbar =
+    document.querySelector('.navbar');
 
-    reveals.forEach((element) => {
+window.addEventListener('scroll', () => {
 
-        const windowHeight = window.innerHeight;
+    if(window.scrollY > 40){
 
-        const revealTop =
-            element.getBoundingClientRect().top;
+        navbar?.classList.add('scrolled');
 
-        const revealPoint = 100;
+    }else{
 
-        if(revealTop < windowHeight - revealPoint){
+        navbar?.classList.remove('scrolled');
+    }
+});
 
-            element.classList.add('active');
+/* =========================================================
+   CURSOR GLOW
+========================================================= */
 
-        }
+const cursorGlow =
+    document.querySelector('.cursor-glow');
 
+if(cursorGlow){
+
+    document.addEventListener('mousemove', (e) => {
+
+        cursorGlow.style.left =
+            `${e.clientX}px`;
+
+        cursorGlow.style.top =
+            `${e.clientY}px`;
     });
-
 }
-
-window.addEventListener('scroll', revealElements);
-
-revealElements();
