@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const Rental =
-    require("../models/Rental");
+    require("../models/rental");
 
 const {
     protect
