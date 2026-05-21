@@ -8,7 +8,7 @@ require("dotenv").config();
 
 const Product = require("./models/product");
 const Equipment =
-  require("./models/Equipment");
+  require("./models/equipment");
 
 // =========================
 // ROUTES
